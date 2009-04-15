@@ -1,0 +1,7 @@
+var
+  i;
+begin
+
+  RenameFile('test.txt', 'test2.txt');
+
+end;

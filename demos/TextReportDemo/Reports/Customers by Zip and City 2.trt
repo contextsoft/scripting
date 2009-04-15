@@ -1,0 +1,57 @@
+#rem 
+#rem Report declarations
+#rem
+#section report_header before report
+#section report_footer after report
+#section detail in report on report.Customers
+
+#section group_header2 before detail group by Zip
+#section group_header before detail group by City
+#section group_footer after detail group by City
+#section group_footer2 after detail group by Zip
+#aggregate cust_counter for detail on 1
+
+#rem
+#rem Report layout: Customers details groupped by Zip and City
+#rem
+#begin report_header
+******************************
+* Displays list of customers *
+******************************
+CustNo | Customer Name
+------------------------------
+
+<% Flush('e:\2\header.txt'); %>
+#end
+
+#begin report_footer
+------------------------------
+  Grand Total: <%=count(cust_counter)%> customers
+<% Flush('e:\2\footer.txt'); %>
+#end
+
+#begin detail
+    <%=detail.CustNo%>  | <%=detail.Company%>
+
+#end
+
+
+#begin group_header
+  Located in city: <%=detail.City%>
+
+#end
+
+#begin group_footer
+  Total in city: <%=count(cust_counter)%> customers
+#end
+
+#begin group_header2
+Located in Zip: <%=detail.Zip%>
+
+#end
+
+#begin group_footer2
+Total in Zip: <%=count(cust_counter)%> customers
+
+<% Flush('e:\2\zip' + VarToStr(detail.Zip) + '.txt'); %>
+#end

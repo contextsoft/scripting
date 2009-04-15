@@ -1,0 +1,13 @@
+var
+  s, res;
+begin
+  res := FindFirst('*.*', faAnyFile, @s);
+  while res = 0 do
+  begin
+    if s.name[1] <> '.' then
+      writeln(s.name, '  ', s.size);
+    res := FindNext(@s);
+  end;
+  FindClose(@s);
+end;
+  

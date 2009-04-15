@@ -1,0 +1,12 @@
+var
+  s, f;
+begin
+  f := CreateFileStream('test.txt', fmOpenRead);
+  s := f.ReadLine;
+  while s <> '' do
+  begin
+    writeln(s);
+    s := f.ReadLine;
+  end;
+  f.Free;
+end;

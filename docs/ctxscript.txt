@@ -1,0 +1,114 @@
+
+
+var // Global variable
+  CtxModules: TModules; // All modules registered here
+  CxtMainModule: TCtxModule; // Default module, that 
+
+  TContext = class(TComponent)
+  public
+    FLoadedModules: TList; // Populated by SetActive(True) = Load
+    Stack
+  published
+    {:: If nil then all the modules will be used }
+    Application: TCtxModule
+    property Active: Boolean
+  end;
+
+  TCtxClass = class (TComponent)
+  protected
+    function GetXXX(Obj: Pointer; Prop: TCtxProperty): XXX;
+    function SetXXX(Obj: Pointer; Prop: TCtxProperty, Value: XXX);
+  public
+    function New: Pointer; 
+    procedure Dispose(Obj: Pointer);
+
+    property CtxClassName: String
+    property CtxModule: TCtxModule
+  end;
+
+  TCtxModule = class(TCtxClass)
+  protected
+    FUsesModules: TList;
+    FMethods: TList;
+    FVariables: TList;
+    FClasses: TList;
+  public
+    function Load(Context: TContext): Pointer;
+    procedure Unload(Context: TContext; Module: Pointer);
+
+    // '*' by default - uses all registered modules
+    property UsesModules: String 
+  end;
+
+  TCtxLanguage = class (TComponent)
+    function Compile(Method: TMethod): TCtxByteCode;
+  end;
+
+  TCtxMethod = class (TComponent)
+  protected
+    FCtxClass: TCtxClass
+    FParams: TList; // of TCtxParameter
+    FResultType: TCtxValueType;
+    FMethodName: String;
+    FByteCode: array of Pointer;
+  public
+    {:: Pops parameters from stack and pushes result back on. }
+    procedure Execute(Obj: Pointer; Context: TContext); virtual;
+
+    property CtxClass: TCtxClass
+    property Code: String
+    property Body: String
+    property Declaration: String
+    property Language: TCtxLanguage
+  end;
+
+  TCtxParamType = (cptConst, cptIn, cptOut, cptVar);
+
+  TCtxParameter = class
+    ParamName: String;
+    ParamType: TCtxParamType;
+    IsConst: Boolean;
+    ValueType: TCtxValueType;
+    ValueClass: TCtxClass;
+    HasDefaultValue: Boolean;
+    DefaultValue: String;
+  end;
+  
+  TCtxCompilerStackRec = record
+    ValueType: TCtxValueType;
+    ValueClass: TCtxClass;
+    IsReference: Boolean;
+    Value: Int64;
+  end;
+
+  TCtxInstructionType = (ciFieldSet, ciFieldGet, ciMethod, ciOperator);
+
+  TCtxInstruction = procedure (Obj: Pointer; Context: TContext) of object;
+
+  TCtxInstruction = record
+    InsType: TCtxInstructionType;
+    Instruction: TObject;
+  end;
+
+  TCtxValueType = (cvtVoid, cvtInteger, cvtSmallInt, cvtLargeInt, cvtDouble,
+    cvtVariant, cvtString, cvtDateTime, cvtDate, cvtTime, cvtObject,
+    cvtClass, cvtModule);
+
+  TCtxField = class (TComponent)
+  public
+    class function ValueType: TCtxValueType
+
+    {:: Pushes field's value on stack }
+    procedure ExecuteGet(Obj: Pointer; Context: TContext);
+    {:: Pops field's value from stack }
+    procedure ExecuteSet(Obj: Pointer; Context: TContext);
+
+    function GetXXX(Obj: Pointer): XXX;
+    function SetXXX(Obj: Pointer, Value: XXX);
+
+    property CtxClass: TCtxClass
+    property DefaultValue: String
+    property IsConst: Boolean
+  end;
+
+

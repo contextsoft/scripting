@@ -1,0 +1,438 @@
+Context Scripting Suite
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Context Scripting is designed to simplify the task of adding 
+scripting functionality into applications. The package
+contains four major classes, that work together to compile
+and execute scripts and to resolve names of objects or
+properties, that may appear in scripts. These classes are:
+TCtxCompiler, TCtxScriptCode, TCtxScript and TCtxIntrospector.
+
+TCtxCompiler is a virtual class, ancestor of every compiler,
+that can produce code, executable by TCtxScript component.
+The package includes default Pascal-like script compiler, 
+implemented by TCtxScriptCompiler. Objects of this class
+register itself in CtxCompilers list and are not directly
+called by user. They are located by Language name and invoked
+from inside the script class.
+
+TCtxScriptCode is a final class, representing a code, executable
+by TCtxScript. It also contains source code, script name and -
+after compilation - a list of local symbols (parameters and
+local variables), found in the script. You should never need
+to inherit from this class. TCtxScriptCode may represent both
+methods and expressions. All parameters and local variables
+are considered Variants, so type declaration is not currently
+supported. Context Script supports in, out and var parameters.
+
+  Examples of Context Script method:
+
+  procedure MyProc(A; var B; in C, D; out E);
+  var
+    LocalVariable1, LocalVariable2;
+  begin
+    // E parameter is NULL, as out parameters are nullified.
+    LocalVariable1 := A + B * C + D - E;
+    LocalVariable2 := LocalVariable1 div 2;
+    // B and E parameters will be changed by reference.
+    // This is a way to return values from scripts. 
+    B := LocalVariable2;
+    E := LocalVariable1;
+  end;
+
+  function MyFunc(x);
+  begin
+    Result := x * sin(x);
+  end;
+
+  Examples of Context Script expressions:
+
+  MyForm.Left + (MyForm.Width div 2)
+
+Each script, represented by TCtxScriptCode has scope, which
+determines how the names within the code's context are resolved.
+This scope could be:
+
+ - Global; in which case any name (that is not a local variable
+   or parameter), appeared in script, is treated as a field of
+   GlobalScope object (see GlobalScope property of TCtxScript)
+   or as a field or method of SystemScope object if it cannot be
+   resolved on GlobalScope. In order to  construct global
+   TCtxScriptCode one should use the following constructor:
+
+     constructor Create(AScripting: TCtxScript); overload;
+
+ - Object; in which case any name appeared in script will be 
+   first treated as a field or method of ObjectScope object
+   (see ObjectScope property), then (if not resolved) will be
+   resolved on GlobalScope or SystemScope. The following 
+   constructor could be used to create TCtxScriptCode, that is an
+   object's method:
+
+     constructor Create(AScripting: TCtxScript; AObjectScope: TObject); overload;
+
+   If an instance of object is not known at the moment of creation
+   of TCtxScriptCode object, one may simply assign ObjectScope
+   property before calling Execute method. ObjectScope instance
+   or its class information is not used during compilation.
+
+ - Local; in which case script cannot have its own local variables
+   or parameters, but is considered executed in the context of
+   another script. This means, that it can refer to local variable
+   and parameters of that script as well as object & global scope
+   fields and methods. This feature is used mostly to allow watch
+   expressions, that can be executed in debug time within the context
+   of executing script. This following constructor is used to create
+   local script code:
+
+     constructor Create(ACodeScope: TCtxScriptCode); overload;
+
+A script code is only compiled once, before first execution. Names
+in its context are also only resolved once, during the first execution.
+This is done to avoid complexity of compile-time name resolution 
+and to allow flexible object models (see example with TDataSet
+object model below). 
+
+A simple example of using TCtxScriptCode objects to execute
+script.
+  MyScript := TCtxScriptCode.Create(CtxScript1);
+  try
+    MyScript.Code := 'function Sqr(x); begin Result := x*x; end;';
+    ShowMessage( '12 power 2 is ' + MyScript.Execute(12) );
+    // Second time over the script is not compiled
+    ShowMessage( '16 power 2 is ' + MyScript.Execute(16) );
+  finally
+    MyScript.Free;
+  end;
+
+An instance of TCtxScriptCode can be stored and accessed many
+times. Unless its Code changes, it will not be recompiled, so 
+all subsequent executions will go faster.
+
+TCtxScript is a processor or virtual machine, that loads
+and executes scripts (TCtxScriptCode class). It is implemented
+as one register (called Result) processor with a stack of
+Variant. This means, that all variables in Context Scripting
+are currently represented by Variants. Context Scripting
+works with all standard variant types and also adds two custom
+types:
+
+  varObject - represents Delphi object; reference is stored in
+    VPointer field of TVarData record. In order to convert any
+    Delphi object into variant for passing it as a parameter to
+    Context Script, use VarFromObject and VarToObject functions,
+    declared in CtxScript unit. 
+
+      CtxScript1.Execute(Memo1.Text, [VarFromObject(MainMenu)]);
+
+  varReference - represents a pointer to any value. This Variant
+    type is used to pass variables and object by reference. Use
+    VarRef function declared in CtxScript to create a Variant, 
+    referencing other Variant. For example, to pass local variable
+    by reference to a script (so that the script can change it)
+    one can use the following code:
+
+    var A: Variant;
+    begin
+      CtxScript1.Execute(Memo1.Text, [VarRef(A)]);
+      ShowMessage(A);
+    end;
+
+CtxScript implements two methods of resolves field names in scripts.
+
+  - Variants, of type varDispatch, containing ole automation objects,
+    (i.e. providing IDispatch interface), are invoked via standard
+    ole automation procedure. This means, that one can instantiate an
+    MS "Word Application" object in Context Script, using code like:
+
+        Word := CreateOleObject('Word.Application');
+
+    and then access its properties and methods as if it is a regular
+    Delphi object. Ole automation is used to perform this call:
+
+        Word.Selection.TypeText('It is really easy to use Ole Automation!');
+
+  - Variants of type varObject as well as for any other object
+    (ObjectScope, GlobalScope, SystemScope) CtxScript uses registered
+    "introspectors", descendant of virtual class TCtxIntrospector.
+
+
+TCtxIntrospector is a base class for objects, implementing
+IDispatch-like interface for different Delphi classes. Introspectors
+are only used with Delphi classes, ancestors of TObject. Introspectors
+are registered to Delphi class names and organized in chains. This
+way each class may have several introspectors of different type,
+implementing each different object model for instances of that class.
+
+There're four different types of introspectors implemented:
+
+  - TCtxObjectIntrospector
+  - TCtxPersistentIntrospector
+  - TCtxComponentIntrospector and
+  - TCtxCustomIntrospector
+
+More introspectors can be implemented for other object models,
+however this set is sufficient to be able to resolve any name
+within Delphi scope. For example, if an object is component, the
+scripting engine can resolve its child components by Name (this
+is done by TCtxComponentIntrospector). If the name is not found,
+the engine will look for published properties (this is done by
+TCtxPersistentIntrospector). If a published property is not found,
+the engine will look for published object's fields (done by
+TCtxObjectIntrospector). If the name is still not found, the engine
+will move on to object's parent class and continue until TObject
+is reached. Generally, one never need to inherit from none of the
+above introspectors or even use them to publish Delphi classes.
+Context Scripting registers default introspectors for TComponent,
+TPersistent and TObject and therefore all the published properties
+of ANY Delphi object will be resolved by them. For example, 
+such properties as TComponent.Name, TForm.Caption, etc. will 
+be accessible for any class inherited from those classes.
+However, not all the information is available at run-time
+(i.e. as RTTI information), so sometimes it is necessary to
+create TCtxCustomIntrospector(s) to expose general purpose
+routines, public methods and properties and even add more
+routines and methods to existing classes. 
+
+Adding static routines.
+
+TCtxCustomIntrospector contains an array of method descriptors
+associated with given ClassType. Each method should be declared
+as TCtxMethod:
+
+  TCtxMethod = procedure (Sender: TCtxScript; Instance: TObject; ParCount: Integer);
+
+One class type - TCtxSystemScope - is reserved for system level
+of static routines. So in order to register a static routine,
+that will always be accessible from any script, we need to create
+and instance of TCtxCustomIntrospector for TCtxSystemScope and
+add some registrations. For example, following declaration will
+register method CreateList wich creates and returns an instance
+of TList object and may be considered a constructor for TList.
+
+procedure _CreateList(Sender: TCtxScript; Instance: TObject; ParCount: Integer);
+begin
+  // Instance parameter contains CtxSystemScope variable and in this
+  // case it's not used.
+
+  // We need to make sure, that there's no parameters passed to this
+  // procedure. Otherwise it's an error. CheckParams procedure raises
+  // exception if ParCount is not 0.
+  CheckParams(ParCount, 0);
+
+  // The result of each call, that is supposed to return result
+  // should be assigned to Result register of Sender TCtxScript.
+  Sender.Result := VarFromObject(TList.Create);
+end;
+
+Now we need to register this method, so the script can find it.
+This should be done in initialization section of a unit:
+
+initialization
+  with TCtxCustomIntrospector.Create(TCtxSystemScope) do
+  begin
+    AddMethod('CreateList', @_CreateList);
+  end;
+  // There's no need to finalize it. The engine will
+  // dispose all registered introspectors automatically.
+end.
+
+Adding class members.
+
+Example 1. Now, as we're able to create a TList object, we need
+to provide access to its members: Add, Delete, Insert, Count.
+Here's the code that does that:
+
+procedure _TListAdd(Sender: TCtxScript; Instance: TObject; ParCount: Integer);
+begin
+  CheckParams(ParCount, 1);
+  // Instance contains TList object. First and only parameter contains
+  // objects to be added to list.
+  Sender.Result := TList(Instance).Add(VarToObject(Sender.GetParam(1)));
+end;
+
+procedure _TListInsert(Sender: TCtxScript; Instance: TObject; ParCount: Integer);
+begin
+  CheckParams(ParCount, 2);
+  // Parameters are reversed on stack, so we should get them in 
+  // reverse order.
+  with Sender do
+    TList(Instance).Insert(GetParam(2), VarToObject(GetParam(1)));
+end;
+
+procedure _TListDelete(Sender: TCtxScript; Instance: TObject; ParCount: Integer);
+begin
+  CheckParams(ParCount, 1);
+  TList(Instance).Delete(Sender.GetParam(1));
+end;
+
+procedure _TListCount(Sender: TCtxScript; Instance: TObject; ParCount: Integer);
+begin
+  CheckParams(ParCount, 0);
+  Sender.Result := TList(Instance).Count;
+end;
+
+Now, we need to modify the declarations to add these methods:
+
+initialization
+  with TCtxCustomIntrospector.Create(TCtxSystemScope) do
+  begin
+    AddMethod('CreateList', @_CreateList);
+  end;
+
+  with TCtxCustomIntrospector.Create(TList) do
+  begin
+    AddMethod('Add', @_TListAdd);
+    AddMethod('Delete', @_TListDelete);
+    AddMethod('Insert', @_TListInsert);
+    AddMethod('Count', @_TListCount);
+  end;
+end.
+
+The above declaration will allow us to write Context Script, instantiating
+and using TList. For example:
+
+function AddObjectToSomeList(Obj);
+var
+  List;
+begin
+  List := CreateList;
+  try
+    List.Add(Obj);
+    Result := List.Count;
+    List.Delete(0);
+  finally
+    List.Free; // Free method is registered for all objects by default.
+  end;
+end;
+
+We have published generic TList class. 
+
+Registering new class' method, so the user can invoke it from a
+custom script/macro. 
+
+As one can understand from above, it is not necessary for a class
+to have certain method, for us to register and publish that method
+for that class, generally we 
+
+Example 2. Adding a form's method, that performs some action with
+form's objects.
+
+procedure _AddMemoLine(Sender: TCtxScript; Instance: TObject; ParCount: Integer);
+begin
+  // This simple method will be registered for form class TForm1, so
+  // the Instance will conatain an instance of Form1.
+  CheckParams(ParCount, 1);
+  // This method will add a string passed as only parameter 
+  // to Memo1 contol.
+  TForm1(Instance).Memo1.Lines.Add(Pop);
+end;
+
+initialization
+  with TCtxCustomIntrospector.Create(TForm1) do
+  begin
+    AddMethod('AddMemoLine', @_AddMemoLine);
+  end;
+end.
+
+The script to use it may look as follows:
+
+procedure Test;
+begin
+  AddMemoLine('Hello World!');
+end;
+
+In order to invoke this script in a context of a form, we should
+either assign Form1 to CtxScript1.GlobalScope
+
+  CtxScript1.GlobalScope := Form1;
+
+or create script code instance (TCtxScriptCode), that is a method
+of Form1.
+
+  Macro := TCtxScriptCode.Create(CtxScript1, Form1);
+  Macro.Code := .... whenever we store our macors
+  Macro.Execute;
+
+
+Introspecting custom object model
+
+The four above described introspectors will do most of the job
+in standard 'static' Delphi object model. However, sometimes it
+is beneficial to extend object's model. For instance, we'd like
+the user to be able to write Scripts, that directly access 
+TDataSet fields by name without calling FieldByName function.
+A script then could look like this:
+
+  Customers := OpenTable('Customers');
+  while not Customers.EOF do
+  begin
+    TotalBalance := TotalBalance + Customers.Balance;
+    Customers.Next;
+  end;
+
+Methods OpenTable, EOF and Next could be done using
+TCtxCustomIntrospector in the same manner as described above for
+TList (we will not repeat this code here, it is available in
+CtxDBLib unit). However, the field Balance cannot be declared the
+same way, because it is impossible to declare methods for every
+field name imaginable in a database. Therefore we will need to
+create a new custom object model, that will allow us to resolve
+field names within the scope of TDataSet. This requires inheriting
+from TCtxIntrospector and implementing its three methods.
+
+  TCtxDataSetIntrospector = class (TCtxIntrospector)
+  public
+    // Returns True if this introspector is able to resolve the name 
+    // within the given scope. 
+    function ResolveName(CtxScript: TCtxScript; Scope: TObject;
+      const Name: String; var Index: Integer): Boolean; override;
+    // Invokes set method by index 
+    function InvokeSet(CtxScript: TCtxScript; Scope: TObject;
+      const Name: String; var Index: Integer; ParCount: Integer): Boolean; override;
+    // Invokes get method by index 
+    function InvokeGet(CtxScript: TCtxScript; Scope: TObject;
+      const Name: String; var Index: Integer; ParCount: Integer): Boolean; override;
+  end;
+
+{ TCtxDataSetIntrospector }
+
+function TCtxDataSetIntrospector.ResolveName(CtxScript: TCtxScript;
+  Scope: TObject; const Name: String; var Index: Integer): Boolean;
+var
+  Fld: TField;
+begin
+  Fld := TDataSet(Scope).FindField(Name);
+  Result := Fld <> nil; // Return True if field is found
+  if Result then Index := Fld.Index;
+end;
+
+function TCtxDataSetIntrospector.InvokeGet(CtxScript: TCtxScript;
+  Scope: TObject; const Name: String; var Index: Integer; ParCount: Integer): Boolean;
+begin
+  Result := (Index >= 0) and (Index < TDataSet(Scope).FieldCount);
+  if not Result then
+    Result := ResolveName(CtxScript, Scope, Name, Index);
+  if Result then
+    CtxScript.Result := TDataSet(Scope).Fields[Index].Value;
+end;
+
+function TCtxDataSetIntrospector.InvokeSet(CtxScript: TCtxScript;
+  Scope: TObject; const Name: String; var Index: Integer; ParCount: Integer): Boolean;
+begin
+  Result := (Index >= 0) and (Index < TDataSet(Scope).FieldCount);
+  if not Result then
+    Result := ResolveName(CtxScript, Scope, Name, Index);
+  if Result then
+    TDataSet(Scope).Fields[Index].Value := CtxScript.Result;
+end;
+
+Now all we have to do is register it:
+
+initialization
+  TCtxDataSetIntrospector.Create(TDataSet);
+end.
+
+Now we're able to work with field names of any component inherited
+from TDataSet as if it were its properties. We can even pass that
+dataset as a parameter to other macros or methods.

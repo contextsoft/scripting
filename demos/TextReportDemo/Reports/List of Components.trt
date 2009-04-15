@@ -1,0 +1,30 @@
+#rem 
+#rem Report declarations
+#rem
+#section report_header before report
+#section report_footer after report
+#section detail in report on report
+
+#begin report_header
+*****************************************************
+  This Report Displays List of Components 
+             Owned by This Form
+   in a way similar to class declaration
+*****************************************************
+
+  <%=report.ClassName%> = class(TForm)
+
+#end
+
+#begin report_footer new line
+  end;
+
+*****************************************************
+#end
+
+#begin detail
+    <%=detail.Name%>: <%=detail.ClassName%>;
+
+#end
+
+

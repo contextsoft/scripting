@@ -1,0 +1,31 @@
+#rem 
+#rem Report declarations
+#rem
+#section report_header before report
+#section report_footer after report
+
+#section fields_header before fields
+#section fields in report on report.Customers.FieldDefs
+#section fields_footer after fields
+#aggregate fld_cnt for fields on fields.Size
+
+#begin report_header
+****************************************
+* Displays fields in customers dataset *
+*  using published FieldDefs property  *
+****************************************
+<% report.Customers.Active := True; %>
+#end
+
+#begin fields newline
+  <%=fields.Name%> [<%=fields.Size%>]
+#end
+
+#begin fields_footer newline
+  <%=count(fld_cnt)%>, Total Record Size: <%=sum(fld_cnt)%>
+#end
+
+#begin fields_header newline
+CUSTOMERS: 
+
+#end

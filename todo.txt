@@ -1,0 +1,28 @@
+
+    CONTEXT SCRPIPT TO DO LIST:
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    - Do something about pragmas {$DESCRIPTION }
+    - Saving/Loading to/from stream in text format
+    - Unit parsing?
+
+    - Separate unops & binops from other instructions
+    - Compiler callbacks, overloaded operators
+    - Extendable set of directives
+    - Introspectors: list of names and name's properties (Field, Prop, Method)
+
+    - Classes, class methods, constructors & varClass
+    - Auto process non-virtual methods (push parameters on stack)
+    - Auto process virtual methods (locate address in VMT)
+    - Auto process dynamic methods (locate address in DMT)
+    - Create integrated debugger as a component (separate exe, dll?)
+
+    - 'with' statement (problem with exceptions, need to code try-finally)
+    - VCL.Net portability
+    - Create TCtxCCompiler & TCtxBasCompiler
+
+    - Multi-threading = Invoking same PCode in different Script Engines
+      remember last scripting in PCode, reset Invoke info if Scripting
+      is different, remember Invoke info in Scripting, association of
+      pre-compiled code with invoke info, so we don't have to resolve
+      names every time for small often invoked scripts

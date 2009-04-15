@@ -1,0 +1,28 @@
+<!-- #section s1 before report -->
+<!-- #var i -->
+<!-- #begin s1 -->
+<html>
+<body>
+<table border=1>
+  <tr bgcolor="#EEEEEE">
+    <td align=center><h3>{%= a %} ++ {%=b%}<br>
+  This Report Displays List of Components<br>
+             Owned by This Form<br>
+   in a way similar to class declaration</h3>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<code>
+  {%=report.ClassName%} = <b>class</b>(TForm)
+</code>
+  {% for i := 1 to 10 do begin %}
+    <li>Line # {%=i%}.</li>
+  {% end; %}
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+<!-- #end -->
+

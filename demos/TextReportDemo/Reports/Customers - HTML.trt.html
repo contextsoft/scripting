@@ -1,0 +1,59 @@
+#rem  
+#rem Report declarations
+#rem
+#section report_header before report
+#section report_footer after report
+
+#section header_begin before header
+#section header in report on report.Customers.FieldDefs
+#section header_end after header
+
+#section detail in report on report.Customers
+#section fields_begin before fields
+#section fields in detail on detail.FieldDefs
+#section fields_end after fields
+#aggregate cust_cnt for detail on 1
+
+#begin report_header
+<html>
+<body>
+<table border=1>
+
+#end
+
+#begin report_footer newline
+<tr><td colspan=<%=report.Customers.FieldDefs.Count%>><b>Total:&nbsp;
+<%=count(cust_cnt)%> customers</b>
+</td></tr>
+</table>
+</body>
+</html>
+
+#end
+
+#begin fields_begin 
+  <tr>
+
+#end
+#begin fields 
+    <td><font size=1><%=detail.FieldByName(fields.Name).Value%>&nbsp;</font></td>
+
+#end
+#begin fields_end 
+  </tr>
+
+#end
+
+#begin header_begin 
+  <tr>
+
+#end
+#begin header
+    <td bgcolor="#EFEFEF"><font size=1><b><%=header.Name%></b></font></td>
+
+#end
+#begin header_end 
+  </tr>
+
+#end
+

@@ -1,0 +1,34 @@
+#rem 
+#rem Report declarations
+#rem
+#section report_header before report
+#section report_footer after report
+#var level
+
+#section detail_header before detail
+#section detail in report,detail on report.Categories(detail)
+#section detail_footer after detail
+
+#begin report_header
+*****************************************************
+  This Report Displays List of Categories
+*****************************************************
+<% level := 0; %>
+#end
+
+#begin report_footer new line
+
+*****************************************************
+#end
+
+#begin detail
+<%=RepeatStr(level, '  ')%><%=detail.Name%>(<%=detail.ID%>)
+
+#end
+
+#begin detail_header
+<% level := level + 1; %>
+#end
+#begin detail_footer
+<% level := level - 1; %>
+#end

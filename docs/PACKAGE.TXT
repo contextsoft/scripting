@@ -1,0 +1,118 @@
+==========================
+* KEY UNITS
+==========================
+
+unit CtxClass
+=============
+TCtxModule
+TCtxClass
+TCtxField (FieldKind: Constant, Variable, Field, Property, Result)
+  TCtxStrField
+  TCtxIntField
+  TCtxObjField
+  TCtxCollection
+  ...
+TCtxMethod
+TCtxObject
+TCtxDocument (container for TCtxObject)
+TCtxDocViewLink
+
+  // Task1: Pointer -> get TCtxClass: done at compile-time, because
+  // they're trongly typed.
+  // Task2: Casting TDataset and descendants to DataSet and to BizObj
+
+
+unit CtxDocView
+===============
+uses CtxClass
+---------------
+TCtxDocView (TControl)
+TCtxSelection (TComponent)
+TCtxVisualDocument (TCtxClass)
+TCtxDocPage (TCtxClass)
+TCtxVisualObject (TCtxClass)
+TCtxTextBox (TCtxVisualObject)
+TCtxImage (TCtxVisualObject)
+...
+
+unit CtxScript
+==============
+uses CtxClass
+--------------
+TCtxScript (TComponent)
+TCtxScriptMethod (TCtxMethod)
+...
+
+unit CtxReport
+==============
+uses CtxClass, CtxDocView, CtxScript
+------------------------------------
+TCtxReport (TComponent)
+TCtxReportLayout (TCtxVisualDocument)
+TCtxReportStore
+...
+
+unit CtxDbSchema
+================
+uses CtxClass, DB
+-----------------
+TCtxDatabaseSchema (TCtxClass) 
+TCtxTableDef (TCtxClass)
+TCtxFieldDef (TCtxClass)
+TCtxIndexDef (TCtxClass)
+TCtxRelation (TCtxClass)
+TCtxTrigger  (TCtxClass)
+TCtxObjectTrigger (TCtxClass)
+...
+
+==========================
+* OTHER UNITS
+==========================
+
+unit CtxDiagram
+===============
+uses CtxClass
+---------------
+TCtxDiagram (TCtxClass)
+TCtxTableView (TCtxVisualObject)
+TCtxConnection (TCtxVisualObject)
+...
+
+unit CtxDB
+==========
+uses CtxClass, DB
+-----------------
+TCtxDataSet (represents one or more (TCtxCollection) of TCtxObject)
+...
+
+unit CtxBarcode
+===============
+uses CtxClass, CtxDocView
+-------------------------
+TCtxBarcode (TCtxVisualObject)
+
+
+
+Question: Should we make the report structure a class or a method
+at design time and then provide "an instance" to fill in that
+class or formal parameters at run-time. In this case registered
+classes and database schema (see below) would give us a way
+to design repot without actual data. In this case seem reasonable
+to have database schema as a map between the database and classes.
+Each table will, thus, become a class or a part of a class. This 
+seem to create problems when working with generic type databases
+not pre-structured as classes. Also some generic SQL statements
+might return results not describled as a set of instances of 
+existing classes, so we'll have to produce this "temporary" 
+class to represent a result set for report (this includes wide
+range of reports with comples joins and grouping conditions).
+
+What is Database or SQLDatabase? For instance if a method have SQLDatabase
+as a parameter or a class member it could have sql operator (at
+least it is obvious how to run it). However, it is not obvious 
+how to represent a generic result set, especially at compile-time
+which would essentially require preparing a query. Same problem
+exists if we run any other query, returning result set of unknown
+type. We'll have to explicitly declare (or type-cast) the result
+set to a defined class if we are to have option to address 
+its fields by names without having to use FieldByName method.

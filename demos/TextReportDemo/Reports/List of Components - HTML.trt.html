@@ -1,0 +1,47 @@
+<!-- #rem
+#rem Report declarations
+#rem
+#section report_header before report
+#section report_footer after report
+#section detail in report on report
+# -->
+
+<!-- #begin report_header -->
+<html>
+<body>
+<table border=1>
+  <tr bgcolor="#EEEEEE">
+    <td align=center><h3>{%= a %} ++ {%=b%}<br>
+  This Report Displays List of Components<br>
+             Owned by This Form<br>
+   in a way similar to class declaration</h3>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<code>
+  {%=report.ClassName%} = <b>class</b>(TForm)
+</code>
+    </td>
+  </tr>
+
+<!-- #end -->
+
+<!-- #begin detail -->
+  <tr>
+    <td><code>&nbsp;&nbsp;
+    {%=detail.Name%}: {%=detail.ClassName%};</code>
+    </td>
+  </tr>
+
+<!-- #end -->
+
+<!-- #begin report_footer new line -->
+  <tr>
+    <td><code><b>end</b>;</code></td>
+  </tr>
+</table>
+</body>
+</html>
+<!-- #end -->
+

@@ -1,0 +1,93 @@
+Context Scripting Suite for Delphi 5,6,7,2005
+Copyright (c) 2004-2005, Michael Baytalsky
+All Rights Reserved
+
+END USER LICENSE AGREEMENT (EULA)
+
+IMPORTANT - THIS IS A LEGAL AGREEMENT BETWEEN YOU
+(EITHER AN INDIVIDUAL OR AN ENTITY) AND MICHAEL
+BAYTALSKY BY INSTALLING AND/OR USING Scripting SUITE,
+YOU ACKNOWLEDGE THAT YOU HAVE READ THIS LICENSE
+AGREEMENT, UNDERSTAND IT, AND AGREE TO BE BOUND BY ITS
+TERMS. YOU FURTHER AGREE THAT IT IS THE FULL AND
+COMPLETE AGREEMENT BETWEEN US, SUPERSEDING ALL PRIOR
+WRITTEN OR VERBAL AGREEMENTS OF ANY KIND. IF YOU DO NOT
+UNDERSTAND OR DO NOT AGREE TO THE TERMS OF THIS
+AGREEMENT, YOU MUST CEASE USING THIS PRODUCT
+IMMEDIATELY AND PROMPTLY RETURN ALL MATERIALS
+(INCLUDING DISK(S) AND WRITTEN MATERIALS) TO MICHAEL
+BAYTALSKY.
+
+GRANT OF LICENSE. This license permits you to install and use the
+software included in this package on any single computer for the
+sole purposes of designing, developing, testing, and deploying
+application programs. If you are an entity, you must designate
+one individual within your organization to license the right to
+use the software included in this package in the manner provided
+herein. 
+
+UNREGISTERED VERSION. You may not use unregistered version of the
+software included in this package for creaing and distributing
+shareware or commercial products. In order to use Context
+Scripting Suite in a commercial software development you must
+register it with Michael Baytalsky (see readme.txt files for more
+information).
+
+RENTAL. You may not rent, lease, or lend the software included in
+this package.
+
+COPYRIGHT. The software contained in this package is owned by
+Michael Baytalsky and is protected by United States copyright
+laws and international treaty provisions. Therefore, you must
+treat this software like any other copyrighted material (e.g.
+books and musical recordings) except that you may make a copy
+of the software for backup or archival purposes.
+
+All copies of the software you develop and distribute using
+Context Scripting Suite must include a Michael Baytalsky's
+copyright notice, or a valid copyright notice of your own.
+
+AGREEMENT PERTAINING TO THE RELEASE OF SOURCE CODE 
+
+DISTRIBUTION OF SOURCE CODE. You may not distribute the source
+code contained in this package. Specifically this includes all
+.dcu, .dfm, and .pas files contained in this package or produced
+by compilation of the source contained in this package.
+
+CHANGES TO SOURCE CODE. Michael Baytalsky reserves the right to
+change any part of the source in future versions of the product.
+These changes may include the removal of classes, properties and
+methods or the creation of new classes, properties and methods.
+
+DISCLAIMER OF WARRANTY
+
+THIS SOFTWARE AND THE ACCOMPANYING FILES ARE SOLD "AS
+IS" AND WITHOUT WARRANTIES AS TO PERFORMANCE OR
+MERCHANTABILITY OR ANY OTHER WARRANTIES WHETHER
+EXPRESSED OR IMPLIED. BECAUSE OF THE VARIOUS HARDWARE
+AND SOFTWARE ENVIRONMENTS INTO WHICH CONTEXT SCRIPTING
+SUITE MAY BE PUT, NO WARRANTY OF FITNESS FOR A
+PARTICULAR PURPOSE IS OFFERED.
+
+THE USER MUST ASSUME THE ENTIRE RISK OF USING THIS
+PACKAGE. ANY LIABILITY OF THE SELLER WILL BE LIMITED
+EXCLUSIVELY TO PRODUCT REPLACEMENT.
+
+IF YOU DO NOT AGREE WITH THE TERMS OF THIS LICENCE YOU
+MUST UNINSTALL CONTEXT SCRIPTING SUITE AND CEASE USING
+THE PRODUCT.
+
+All rights not expressly granted here are reserved by
+Michael Baytalsky.
+
+Thank you for using Context Scripting Suite!
+
+CONTACT INFORMATION
+
+Michael Baytalsky
+5450 Cascade Ct. "A"
+Willoughby, Ohio 44094
+USA
+
+E-mail: mike@contextsoft.com
+

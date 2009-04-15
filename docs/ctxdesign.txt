@@ -1,0 +1,114 @@
+
+  Two types of usage for TCtxClass:
+  I. To develop classes to use in persistent documents, like:
+    reporting controls, structured documents, etc. In this
+    case it is important to be able to access properties and
+    methods from code and visa versa call back delphi native
+    event handlers from ctx classes (paint handlers, etc.). This
+    type of components doesn't need to be independant, since it
+    is connected to code anyway. No need to store class structure -
+    it is embedded into the application.
+
+  II. To develop stand alone reports & forms using scripting, that
+    access report strcture and control properties. In this case
+    modules with class (report or form) methods and definition will
+    be stored independantly. They will require presence of some other
+    "modules" in order to be loaded, but will not contain callbacks
+    into delphi.
+
+  III. For pure scripting purposes - need to be able to call
+    scripts from delphi, which in its turn accesses native-delphi
+    methods through native method of other linked modules.
+
+
+    CtxScript, CtxReport, CtxUtil, CtxEditor, CtxDBISAM, CtxBDE, CtxDesinger
+
+    TContextReport
+      LoadFromStream
+      LoadFromFile
+      Print
+      Prview
+      Design
+
+    TContextCustomDataProvider
+      TContextDBISAMDataProvider
+      TContextDataSetDataProvider
+
+    TContextReportEditor
+
+    TfrmContextReportDesigner
+
+
+
+
+
+
+
+
+
+  TContextModule = class
+
+  end;
+
+  TContextClass = class
+    Module: TContextModule;
+    function NewInstance: Pointer;
+    procedure FreeInstance(Instance: Pointer);
+  end;
+
+  TContextProcedure = class
+    procedure Execute;
+  end;
+
+  TContextMethod = class
+    ContextClass: TContextClass
+    procedure Execute(Instance: Pointer): Variant;
+  end;
+
+
+  {
+    CtxScript, CtxReport, CtxUtil, CtxEditor, CtxDBISAM, CtxBDE, CtxDesinger
+
+
+    TContextScript = class (TComponent) // -- virtual machine
+
+      function LoadScript(Class: Variant; const Code, Lang: String): Integer; // Handle to a compiled code within VM
+      function Execute(PCode: Integer; _Self: Variant): Variant;
+
+      GlobalScope: TContextClass
+    end;
+
+    TContextScriptCompiler = class (TComponent) // registered language
+
+    Execute(Scope: Variant; const Script: String)
+
+    TContextReport
+      LoadFromStream
+      LoadFromFile
+      Print
+      Prview
+      Design
+      // Data
+      Layout -> Frame(Band)
+      Context
+        ContextItem : ContextDataSet: NameSpace, ContextField, ContextMethod
+      Bands
+        Band -> ContextDataSet
+      Parameters
+
+      Items['Customer'].DataSet := tblCustomers;
+
+      TDataSetProvider.GetDataSet(Params);
+
+      Evaluate(Expression, Context)
+
+    ContextDataSet
+
+    TContextDataProvider
+      TContextDBISAMDataProvider
+      TContextDataSetDataProvider
+    TContextReportEditor
+
+    TfrmContextReportDesigner
+
+  }

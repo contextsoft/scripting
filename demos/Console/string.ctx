@@ -1,0 +1,8 @@
+
+var
+  str, i;
+begin
+  str := 'John Smith';
+  for I := 1 to Length(str) do
+    writeln(str[I]);
+end;

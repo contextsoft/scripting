@@ -1,0 +1,60 @@
+ANN: Context Scripting v.1.01 is now available!
+
+Dear Friends,
+
+I am happy to announce a release new product - Context Scripting
+Suite (v.1.01). It is immediately available for download at:
+http://www.contextsoft.com/products/ctxscript/downloads.jsp
+
+Returning customers of Context Software as always will receive 
+special price! You need to be logged into "My Account" section in order
+to see this promotion.
+
+Context Scripting Suite is desinged to compile and execute scripts
+using TCtxScript component, implementing stack processor. Context
+Scripting is shipped with Object Pascal-like script compiler. It
+is extremely flexible, extensible and resembles a real compiler.
+It is easy to integrate into application and a lot of fun to play with!
+Its main features are:
+
+  - Fast script compilation (into intermediate code) & execution. 
+  - Virtualized compiler allows to add more languages.
+  - Allows script debugging: stopping, resuming, evaluating
+    watch expressions, inspection of call stack and more.
+  - Fast and one time only name resolution done with 
+    virtualized and extensible introspectors, that allow to
+    extend and create your own object model.
+  - Very small footprint.
+  - Easily extensible array of external functions.
+  - Easy to create custom object model and publish methods of 
+    existing classes.
+  - Supports dinamic variant arrays.
+  - Supports parameters passed by value and by address (var, out)
+  - Allow to compile and evaluate procedures, functions and 
+    simple expressions.
+  - Supports exception handling with try..except, try..finally, raise
+    directives and exception variable.
+  - Default compiler supports most of Delphi statements, like
+    while...do, repeat...until, for...to, for...downto, if...then[...else],
+    goto, exception handling, @<variable> and more.
+  - Includes large library of familiar standard routines from SysUtils unit.
+
+The package also includes help files and demos, explaining most of
+its functionality.
+
+Fully functional trial version (no source code included) is available at:
+http://www.contextsoft.com/products/ctxscript/downloads.jsp
+
+You can order the source code at:
+http://www.contextsoft.com/products/ctxscript/ordering.jsp
+(this is required for use in commercial applications)
+
+For more details, please go to
+http://www.contextsoft.com/products/ctxscript
+and refer to the included help files and demos.
+
+
+Best regards,
+Michael Baytalsky
+e-mail: mike@contextsoft.com
+http://www.contextsoft.com
