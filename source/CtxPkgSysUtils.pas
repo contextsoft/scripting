@@ -28,6 +28,8 @@
 (******************************************************************************)
 unit CtxPkgSysUtils;
 
+{$I CtxVer.inc}
+
 interface
 
 uses Classes, CtxScript;
@@ -354,7 +356,11 @@ type
     destructor Destroy; override;
   published
     property Name: TFileName read SearchRec.Name;
+    {$IFDEF D2005_ORLATER}
+    property Size: Int64 read SearchRec.Size;
+    {$ELSE}
     property Size: Integer read SearchRec.Size;
+    {$ENDIF}
     property Time: TDateTime read GetTime;
     property Attr: Integer read SearchRec.Attr;
   end;
