@@ -1472,7 +1472,7 @@ begin
     begin
       A := VarArrayLowBound(Value, 1);
       if A <= VarArrayHighBound(Value, 1) then
-        Result := '[' + VarToStr(Value[A]);
+        Result := '[' + VarToStrEx(Value[A]);
       for I := A + 1 to VarArrayHighBound(Value, 1) do
         Result := Result + ', ' + VarToStrEx(Value[I]);
       Result := Result + ']';

@@ -124,6 +124,19 @@ begin
   end;
 end;
 
+procedure _Coalesce(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
+var
+  DefaultValue: Variant;
+begin
+  CheckParams(ParCount, 1, 2);
+  if ParCount = 2 then
+    DefaultValue := Sender.Pop
+  else DefaultValue := 0.0;
+  Sender.Result := Sender.Pop;
+  if VarIsNull(Sender.Result) or VarIsEmpty(Sender.Result) then
+    Sender.Result := DefaultValue;
+end;
+
 procedure _VarToStr(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   Sender.Result := VarToStr(Sender.GetParam(1));
@@ -808,6 +821,8 @@ begin
     AddMethod('Max', @_Max);
     AddMethod('Trunc', @_Trunc, 1);
     AddMethod('Round', @_Round, 1);
+    AddMethod('Coalesce', @_Coalesce);
+    AddMethod('Nvl', @_Coalesce);
 
     AddMethod('Sin', @_Sin, 1);
     AddMethod('Cos', @_Cos, 1);
