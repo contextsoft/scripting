@@ -25,6 +25,8 @@
 (******************************************************************************)
 unit CtxPkgDB;
 
+{$I CtxVer.inc}
+
 interface
 
 uses Classes, DB, CtxScript;
@@ -76,6 +78,8 @@ begin
     else CtxScriptErrorFmt(SInvalidInvokeType, [Name]);
   end;
 end;
+
+{$IFnDEF D2009_ORLATER}
 
 type
   TCtxDataSetIterator = class (TCtxObjectIterator)
@@ -324,8 +328,11 @@ procedure _TFieldSetValue(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instan
 begin
   TField(Instance).Value := Sender.Result;
 end;
+{$ENDIF}
 
 initialization
+
+{$IFnDEF D2009_ORLATER}
   TCtxDataSetIntrospector.Create(TDataSet);
 
   with TCtxCustomIntrospector.Create(TDataSet) do
@@ -364,4 +371,5 @@ initialization
   begin
     AddProp('Value', @_TFieldGetValue, @_TFieldSetValue);
   end;
+{$ENDIF}
 end.
