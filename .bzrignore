@@ -24,3 +24,5 @@ demos2
 demos2\**
 *.autosave
 Thumbs.db
+__history
+__history\**

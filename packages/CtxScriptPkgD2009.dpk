@@ -1,10 +1,10 @@
-package CtxScriptPkgD5;
+package CtxScriptPkgD2007;
 
-{$R *.RES}
-{$R 'CtxScript.dcr'}
-{$R 'CtxUnit.dcr'}
-{$R 'CtxTextReport.dcr'}
-{$ALIGN ON}
+{$R *.res}
+{$R '..\source\CtxScript.dcr'}
+{$R '..\source\CtxTextReport.dcr'}
+{$R '..\source\CtxUnit.dcr'}
+{$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
 {$DEBUGINFO ON}
@@ -29,20 +29,26 @@ package CtxScriptPkgD5;
 {$IMPLICITBUILD OFF}
 
 requires
-  dsnide50,
-  vcl50,
-  Vcldb50;
+  designide,
+  vcl,
+  rtl,
+  dbrtl,
+  xmlrtl,
+  vclactnband,
+  vclx;
 
 contains
+  CtxActions in '..\source\CtxActions.pas',
+  CtxPasCompiler in '..\source\CtxPasCompiler.pas',
+  CtxPgkGraphics in '..\source\CtxPgkGraphics.pas',
+  CtxPkgClasses in '..\source\CtxPkgClasses.pas',
+  CtxPkgDB in '..\source\CtxPkgDB.pas',
+  CtxPkgSysUtils in '..\source\CtxPkgSysUtils.pas',
   CtxScript in '..\source\CtxScript.pas',
   CtxScriptReg in '..\source\CtxScriptReg.pas',
-  CtxActions in '..\source\CtxActions.pas',
-  CtxPkgSysUtils in '..\source\CtxPkgSysUtils.pas',
-  CtxPkgClasses in '..\source\CtxPkgClasses.pas',
-  CtxUnitEditor in '..\source\CtxUnitEditor.pas' {frmCtxUnitEditor},
-  CtxPasCompiler in '..\source\CtxPasCompiler.pas',
-  CtxPkgDB in '..\source\CtxPkgDB.pas',
+  CtxSyntaxHighlighter in '..\source\CtxSyntaxHighlighter.pas',
+  CtxTextReport in '..\source\CtxTextReport.pas',
   CtxUnit in '..\source\CtxUnit.pas',
-  CtxTextReport in '..\source\CtxTextReport.pas';
+  CtxUnitEditor in '..\source\CtxUnitEditor.pas';
 
 end.
