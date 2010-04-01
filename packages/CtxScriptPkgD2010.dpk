@@ -1,9 +1,9 @@
 package CtxScriptPkgD2010;
 
 {$R *.res}
-{$R 'CtxScript.dcr'}
-{$R 'CtxUnit.dcr'}
-{$R 'CtxTextReport.dcr'}
+{$R '..\source\CtxScript.dcr'}
+{$R '..\source\CtxUnit.dcr'}
+{$R '..\source\CtxTextReport.dcr'}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
@@ -42,16 +42,16 @@ requires
 
 
 contains
-  CtxScript in 'CtxScript.pas',
-  CtxScriptReg in 'CtxScriptReg.pas',
-  CtxActions in 'CtxActions.pas',
-  CtxPkgSysUtils in 'CtxPkgSysUtils.pas',
-  CtxPkgClasses in 'CtxPkgClasses.pas',
-  CtxUnitEditor in 'CtxUnitEditor.pas' {frmCtxUnitEditor},
-  CtxPasCompiler in 'CtxPasCompiler.pas',
-  CtxPkgDB in 'CtxPkgDB.pas',
-  CtxUnit in 'CtxUnit.pas',
-  CtxTextReport in 'CtxTextReport.pas',
-  CtxPgkGraphics in 'CtxPgkGraphics.pas';
+  CtxScript in '..\source\CtxScript.pas',
+  CtxScriptReg in '..\source\CtxScriptReg.pas',
+  CtxActions in '..\source\CtxActions.pas',
+  CtxPkgSysUtils in '..\source\CtxPkgSysUtils.pas',
+  CtxPkgClasses in '..\source\CtxPkgClasses.pas',
+  CtxUnitEditor in '..\source\CtxUnitEditor.pas' {frmCtxUnitEditor},
+  CtxPasCompiler in '..\source\CtxPasCompiler.pas',
+  CtxPkgDB in '..\source\CtxPkgDB.pas',
+  CtxUnit in '..\source\CtxUnit.pas',
+  CtxTextReport in '..\source\CtxTextReport.pas',
+  CtxPgkGraphics in '..\source\CtxPgkGraphics.pas';
 
 end.
