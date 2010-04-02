@@ -1,6 +1,6 @@
 
 @set package=ctxscript
-@set innosetup="D:\Program Files\Inno Setup 4\ISCC.exe"
+@set innosetup="e:\programs\Inno Setup 5\ISCC.exe"
 
 @echo Building %package%.iss...
 @%innosetup% %package%.iss > %package%.log

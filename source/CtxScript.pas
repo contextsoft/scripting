@@ -9,27 +9,7 @@
 (*                TCtxScriptCode = class (TPersistent)
 (*                TCtxCompiler = class (TComponent)
 (*
-(*  Copyright (c) 2007 Michael Baytalsky
-(*
-(*  ------------------------------------------------------------
-(*  FILE        : CtxScript.pas
-(*  AUTHOR(S)   : Michael Baytalsky (mike@contextsoft.com)
-(*  VERSION     : 1.4
-(*  DELPHI      : Delphi 5,6,7,2005,2006,2007
-(*  ------------------------------------------------------------
-(*  HISTORY     :
-(*    2/14/2005    v1.1     Released
-(*
-(*    2/15/2005    v1.2     Units are separated from CtxScript unit
-(*                          TCtxCompiler became TComponent.
-(*
-(*    6/23/2005    v1.3     Added ClassName property for TObject introspector
-(*                          Added TCtxObjectIterator concept (abstract class)
-(*
-(*    4/21/2007    v1.4     Fixed bug with incorrect stack restoration after
-(*                          accessing default array property of objects.
-(*
-(*    No changes to this file since v1.4.
+(*  Copyright (c) 2010 Michael Baytalsky
 (*
 (******************************************************************************)
 unit CtxScript;
@@ -862,6 +842,8 @@ var
 
 implementation
 
+{$I CtxVer.inc}
+
 uses CtxPasCompiler, Windows, ComObj, ActiveX;
 
 var
@@ -1332,6 +1314,9 @@ begin
       Result := GetFloatProp(Instance, PropInfo);
     tkMethod:
       Result := PropInfo^.PropType^.Name;
+    {$IFDEF D2009_ORLATER}
+    tkUString,
+    {$ENDIF}
     tkString, tkLString, tkWString:
       Result := GetStrProp(Instance, PropInfo);
     tkVariant:
@@ -1386,6 +1371,9 @@ begin
         SetSetProp(Instance, PropInfo, VarToStr(Value));
     tkFloat:
       SetFloatProp(Instance, PropInfo, Value);
+    {$IFDEF D2009_ORLATER}
+    tkUString,
+    {$ENDIF}
     tkString, tkLString:
       SetStrProp(Instance, PropInfo, VarToStr(Value));
     {$IFnDEF VER130}
@@ -2760,7 +2748,7 @@ begin
       PropInfo := PropList^[I];
       if (PropInfo^.PropType^.Kind in tkSimpleProperties) then
         if (citGetMethodOrProp in InvokeTypes) or (citSetProp in InvokeTypes) then
-          OnName(Self, Scope, citGetMethodOrProp, PropInfo^.Name, 0, Data);
+          OnName(Self, Scope, citGetMethodOrProp, String(PropInfo^.Name), 0, Data);
     end;
   finally
     FreeMem(PropList);

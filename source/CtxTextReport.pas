@@ -7,18 +7,7 @@
 (*  Contains:
 (*                TCtxTextReporter = class (TComponent)
 (*
-(*  Copyright (c) 2005 Michael Baytalsky
-(*
-(*  ------------------------------------------------------------
-(*  FILE        : CtxTextReport.pas
-(*  AUTHOR(S)   : Michael Baytalsky (mike@contextsoft.com)
-(*  VERSION     : 1.3
-(*  DELPHI      : Delphi 5,6,7,2005
-(*  ------------------------------------------------------------
-(*  HISTORY     :
-(*    6/23/2005    v1.3    	Released
-(*
-(*    No changes to this file since v1.3.
+(*  Copyright (c) 2010 Michael Baytalsky
 (*
 (******************************************************************************)
 unit CtxTextReport;
@@ -184,7 +173,11 @@ resourcestring
 
 implementation
 
+{$I CtxVer.inc}
+
 uses StrUtils;
+
+{$I CtxD2009.inc}
 
 const
   { Parser Token Types }
@@ -409,7 +402,7 @@ end;
 
 procedure TCtxTextReporter.NextToken(const Str: String; var StartPos: Integer);
 const
-  AphaNum: set of char = ['a'..'z', 'A'..'Z', '_', '-', '0'..'9'];
+  AphaNum: set of AnsiChar = ['a'..'z', 'A'..'Z', '_', '-', '0'..'9'];
 var
   I: Integer;
 begin
@@ -425,7 +418,7 @@ begin
       end;
       'a'..'z', 'A'..'Z', '_': begin
         FNextTokenType := tokenIdentifier;
-        while (StartPos <= Length(Str)) and (Str[StartPos] in AphaNum) do
+        while (StartPos <= Length(Str)) and CharInSet(Str[StartPos], AphaNum) do
         begin
           FNextToken := FNextToken + Str[StartPos];
           Inc(StartPos);

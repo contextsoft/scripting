@@ -6,22 +6,7 @@
 (*
 (*                TCtxPkgClasses = class (TCtxPackage)
 (*
-(*  Copyright (c) 2005 Michael Baytalsky
-(*
-(*  ------------------------------------------------------------
-(*  FILE        : CtxPkgClasses.pas
-(*  AUTHOR(S)   : Michael Baytalsky (mike@contextsoft.com)
-(*  VERSION     : 1.3
-(*  DELPHI      : Delphi 5,6,7,2005
-(*  ------------------------------------------------------------
-(*  HISTORY     :
-(*
-(*    2/14/2005    v1.2     Released
-(*
-(*    6/23/2005    v1.3     Added iterators for compatibility with 
-(* 							CtxTextReporter.
-(*
-(*    No changes to this file since v1.3.
+(*  Copyright (c) 2010 Michael Baytalsky
 (*
 (******************************************************************************)
 unit CtxPkgClasses;

@@ -6,24 +6,7 @@
 (*
 (*                TCtxPkgSysUtils = class (TCtxPackage)
 (*
-(*  Copyright (c) 2005 Michael Baytalsky
-(*
-(*  ------------------------------------------------------------
-(*  FILE        : CtxPkgSysUtils.pas
-(*  AUTHOR(S)   : Michael Baytalsky (mike@contextsoft.com)
-(*  VERSION     : 1.3
-(*  DELPHI      : Delphi 5,6,7,2005
-(*  ------------------------------------------------------------
-(*  HISTORY     :
-(*
-(*    2/14/2005    v1.1     Released
-(*
-(*    2/15/2005    v1.2     CtxPkgSysUtils is separated from CtxScript unit.
-(*
-(*    6/23/2005    v1.3     Added iterators for compatibility with 
-(*                          CtxTextReporter.
-(*
-(*    No changes to this file since v1.3.
+(*  Copyright (c) 2010 Michael Baytalsky
 (*
 (******************************************************************************)
 unit CtxPkgSysUtils;
@@ -369,7 +352,7 @@ type
     destructor Destroy; override;
   published
     property Name: TFileName read SearchRec.Name;
-    {$IFDEF D2005_ORLATER}
+    {$IFDEF D2006_ORLATER}
     property Size: Int64 read SearchRec.Size;
     {$ELSE}
     property Size: Integer read SearchRec.Size;
@@ -690,13 +673,13 @@ end;
 procedure _IncludeTrailingBackslash(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := IncludeTrailingBackslash(GetParam(1));
+    Result := IncludeTrailingPathDelimiter(GetParam(1));
 end;
 
 procedure _ExcludeTrailingBackslash(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := ExcludeTrailingBackslash(GetParam(1));
+    Result := ExcludeTrailingPathDelimiter(GetParam(1));
 end;
 
 procedure _LastDelimiter(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);

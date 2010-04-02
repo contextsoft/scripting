@@ -1,9 +1,9 @@
-==================================================
-Context Scripting Suite for Delphi 5,6,7,2005
-Copyright (c) 2004-2005, Michael Baytalsky
+=============================================================
+Context Scripting Suite for Delphi 7,2005,2006,2007,2009,2010
+Copyright (c) 2004-2010, Michael Baytalsky
 All Rights Reserved
---------------------------------------------------
-Version: 1.3
+-------------------------------------------------------------
+Version: 1.40
 
 
    WHAT'S IN THIS FILE
@@ -85,7 +85,7 @@ II. LIST OF COMPONENTS BY UNIT
   CtxActions            CtxScript       TCtxTriggerAction
                                         TCtxScriptAction
 
-  CtxTextReport			CtxScript   	TCtxTextReporter
+  CtxTextReport                 CtxScript       TCtxTextReporter
 
 III. INSTALLATION INSTRUCTIONS
 ==============================
@@ -101,9 +101,9 @@ tasks automatically, however, you can also install packages
 manually if automatic installation failed for some reason.
 
 When installing for your particular version of Delphi, always choose
-a package with appropriate name, i.e. CtxScriptPkgD5.dpk for Delphi 5,
-CtxScriptPkgD6.dpk for Delphi 6, etc. These packages are located in
-corresponding folders, i.e. libd5, libd6, libd7, libd2005.
+a package with appropriate name, i.e. CtxScriptPkgD7.dpk for Delphi 7,
+CtxScriptPkgD2006.dpk for Delphi 2006, etc. These packages are located in
+corresponding folders, i.e. libd7, libd2005, libd2007, etc.
 
 1. Install CtxScriptPkgDx.dpk, containing database independant components.
 
@@ -179,3 +179,4 @@ contact me at mike@contextsoft.com.
 
 Sincerely,
 Michael Baytalsky
+

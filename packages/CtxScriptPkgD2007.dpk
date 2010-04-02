@@ -38,17 +38,17 @@ requires
   vclx;
 
 contains
-  CtxActions in '..\source\CtxActions.pas',
-  CtxPasCompiler in '..\source\CtxPasCompiler.pas',
-  CtxPgkGraphics in '..\source\CtxPgkGraphics.pas',
-  CtxPkgClasses in '..\source\CtxPkgClasses.pas',
-  CtxPkgDB in '..\source\CtxPkgDB.pas',
-  CtxPkgSysUtils in '..\source\CtxPkgSysUtils.pas',
   CtxScript in '..\source\CtxScript.pas',
   CtxScriptReg in '..\source\CtxScriptReg.pas',
-  CtxSyntaxHighlighter in '..\source\CtxSyntaxHighlighter.pas',
-  CtxTextReport in '..\source\CtxTextReport.pas',
+  CtxActions in '..\source\CtxActions.pas',
+  CtxPkgSysUtils in '..\source\CtxPkgSysUtils.pas',
+  CtxPkgClasses in '..\source\CtxPkgClasses.pas',
+  CtxUnitEditor in '..\source\CtxUnitEditor.pas' {frmCtxUnitEditor},
+  CtxPasCompiler in '..\source\CtxPasCompiler.pas',
+  CtxPkgDB in '..\source\CtxPkgDB.pas',
   CtxUnit in '..\source\CtxUnit.pas',
-  CtxUnitEditor in '..\source\CtxUnitEditor.pas';
+  CtxTextReport in '..\source\CtxTextReport.pas',
+  CtxPgkGraphics in '..\source\CtxPgkGraphics.pas',
+  CtxSyntaxHighlighter in '..\source\CtxSyntaxHighlighter.pas';
 
 end.

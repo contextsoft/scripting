@@ -6,19 +6,7 @@
 (*
 (*                TCtxPkgGraphics = class (TCtxPackage)
 (*
-(*  Copyright (c) 2008 Michael Baytalsky
-(*
-(*  ------------------------------------------------------------
-(*  FILE        : CtxPkgGraphics.pas
-(*  AUTHOR(S)   : Michael Baytalsky (mike@contextsoft.com)
-(*  VERSION     : 1.3
-(*  DELPHI      : Delphi 5,6,7,2005
-(*  ------------------------------------------------------------
-(*  HISTORY     :
-(*
-(*    06/12/2008    v1.3     Released
-(*
-(*    No changes to this file since v1.3.
+(*  Copyright (c) 2010 Michael Baytalsky
 (*
 (******************************************************************************)
 unit CtxPgkGraphics;

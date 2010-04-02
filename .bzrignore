@@ -26,3 +26,4 @@ demos2\**
 Thumbs.db
 __history
 __history\**
+*.local

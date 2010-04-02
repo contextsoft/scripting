@@ -1,4 +1,4 @@
-package CtxScriptPkgD2010;
+package CtxScriptPkgD2006;
 
 {$R *.res}
 {$R '..\source\CtxScript.dcr'}
@@ -26,20 +26,13 @@ package CtxScriptPkgD2010;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$DESCRIPTION 'Context Scripting'}
-{$DESIGNONLY}
 {$IMPLICITBUILD OFF}
-
-
 
 requires
   designide,
   vcl,
   rtl,
-  dbrtl,
-  vclactnband,
-  vclx,
-  vcldb;
-
+  dbrtl;
 
 contains
   CtxScript in '..\source\CtxScript.pas',

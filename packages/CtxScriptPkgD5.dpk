@@ -43,6 +43,8 @@ contains
   CtxPasCompiler in '..\source\CtxPasCompiler.pas',
   CtxPkgDB in '..\source\CtxPkgDB.pas',
   CtxUnit in '..\source\CtxUnit.pas',
-  CtxTextReport in '..\source\CtxTextReport.pas';
+  CtxTextReport in '..\source\CtxTextReport.pas',
+  CtxPgkGraphics in '..\source\CtxPgkGraphics.pas',
+  CtxSyntaxHighlighter in '..\source\CtxSyntaxHighlighter.pas';
 
 end.

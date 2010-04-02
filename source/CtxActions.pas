@@ -8,18 +8,7 @@
 (*                TCtxTriggerAction = class (TAction)
 (*                TCtxScriptAction = class (TAction)
 (*
-(*  Copyright (c) 2005 Michael Baytalsky
-(*
-(*  ------------------------------------------------------------
-(*  FILE        : CtxActions.pas
-(*  AUTHOR(S)   : Michael Baytalsky (mike@contextsoft.com)
-(*  VERSION     : 1.3
-(*  DELPHI      : Delphi 5,6,7,2005
-(*  ------------------------------------------------------------
-(*  HISTORY     :
-(*    2/14/2005    v1.1          Released
-(*
-(*    No changes to this file since v1.1.
+(*  Copyright (c) 2010 Michael Baytalsky
 (*
 (******************************************************************************)
 unit CtxActions;

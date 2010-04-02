@@ -4,7 +4,7 @@
 (*
 (*  Package registration routines & components editors classes
 (*
-(*  Copyright (c) 2005 Michael Baytalsky
+(*  Copyright (c) 2010 Michael Baytalsky
 (*
 (******************************************************************************)
 unit CtxScriptReg;

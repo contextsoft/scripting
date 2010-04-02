@@ -6,5 +6,4 @@ del /s demos\*.dsk
 del /s demos\*.dcu
 del /s demos\*.exe
 del /q /s lib\*.*
-del /q /s libt\*.*
 del /s *.lck

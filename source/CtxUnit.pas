@@ -8,18 +8,7 @@
 (*                TCtxUnit = class (TComponent)
 (*                TCtxUnitIntrospector = class (TCtxIntrospector)
 (*
-(*  Copyright (c) 2005 Michael Baytalsky
-(*
-(*  ------------------------------------------------------------
-(*  FILE        : CtxUnit.pas
-(*  AUTHOR(S)   : Michael Baytalsky (mike@contextsoft.com)
-(*  VERSION     : 1.3
-(*  DELPHI      : Delphi 5,6,7,2005
-(*  ------------------------------------------------------------
-(*  HISTORY     :
-(*    2/14/2005    v1.2    	Released
-(*
-(*    No changes to this file since v1.2.
+(*  Copyright (c) 2010 Michael Baytalsky
 (*
 (******************************************************************************)
 unit CtxUnit;

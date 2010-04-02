@@ -6,21 +6,7 @@
 (*
 (*                TCtxPkgDB = class (TCtxPackage)
 (*
-(*  Copyright (c) 2005 Michael Baytalsky
-(*
-(*  ------------------------------------------------------------
-(*  FILE        : CtxPkgDB.pas
-(*  AUTHOR(S)   : Michael Baytalsky (mike@contextsoft.com)
-(*  VERSION     : 1.3
-(*  DELPHI      : Delphi 5,6,7,2005
-(*  ------------------------------------------------------------
-(*  HISTORY     :
-(*
-(*    2/14/2005    v1.2    	Released
-(*    6/23/2005    v1.3    	Added TCtxDataSetIterator object to
-(*                         	provide compatibility with TCtxTextReporter
-(*
-(*    No changes to this file since v1.3.
+(*  Copyright (c) 2010 Michael Baytalsky
 (*
 (******************************************************************************)
 unit CtxPkgDB;
@@ -29,7 +15,7 @@ unit CtxPkgDB;
 
 interface
 
-uses Classes, DB, CtxScript;
+uses Classes, DB, CtxScript, Contnrs;
 
 type
   TCtxPkgDB = class (TCtxPackage);
@@ -79,14 +65,12 @@ begin
   end;
 end;
 
-{$IFnDEF D2009_ORLATER}
-
 type
   TCtxDataSetIterator = class (TCtxObjectIterator)
   protected
     FDataSet: TDataSet;
     FBeyondEOF: Boolean;
-    FBookmarks: TStringList;
+    FBookmarks: TObjectList;
   public
     constructor Create(DataSet: TDataSet);
     destructor Destroy; override;
@@ -98,6 +82,15 @@ type
     procedure PushState; override;
     procedure PopState; override;
     function Count: Integer; override;
+  end;
+
+  TCtxBookmarkState = class
+    {$IFDEF D2009_ORLATER}
+    FBookmark: TBookmark;
+    {$ELSE}
+    FBookmark: TBookmarkStr;
+    {$ENDIF}
+    FFilter: String;
   end;
 
 constructor TCtxDataSetIterator.Create(DataSet: TDataSet);
@@ -168,11 +161,16 @@ begin
 end;
 
 procedure TCtxDataSetIterator.PushState;
+var
+  BookmarkState: TCtxBookmarkState;
 begin
   if FBookmarks = nil then
-    FBookmarks := TStringList.Create;
-  FBookmarks.Add(FDataSet.Bookmark);
-  FBookmarks.Add(FDataSet.Filter);
+    FBookmarks := TObjectList.Create;
+
+  BookmarkState := TCtxBookmarkState.Create;
+  FBookmarks.Add(BookmarkState);
+  BookmarkState.FBookmark := FDataSet.Bookmark;
+  BookmarkState.FFilter := FDataSet.Filter;
 end;
 
 procedure TCtxDataSetIterator.PopState;
@@ -180,10 +178,12 @@ begin
   if (FBookmarks = nil) or (FBookmarks.Count < 2) then
     DatabaseError('Invalid call to PopState for DataSet iterator');
   try
-    FDataSet.Filter := FBookmarks[FBookmarks.Count - 1];
-    FDataSet.Bookmark := FBookmarks[FBookmarks.Count - 2];
+    with TCtxBookmarkState(FBookmarks[FBookmarks.Count - 1]) do
+    begin
+      FDataSet.Filter := FFilter;
+      FDataSet.Bookmark := FBookmark;
+    end;
   finally
-    FBookmarks.Delete(FBookmarks.Count - 1);
     FBookmarks.Delete(FBookmarks.Count - 1);
   end;
 end;
@@ -328,11 +328,9 @@ procedure _TFieldSetValue(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instan
 begin
   TField(Instance).Value := Sender.Result;
 end;
-{$ENDIF}
 
 initialization
 
-{$IFnDEF D2009_ORLATER}
   TCtxDataSetIntrospector.Create(TDataSet);
 
   with TCtxCustomIntrospector.Create(TDataSet) do
@@ -371,5 +369,5 @@ initialization
   begin
     AddProp('Value', @_TFieldGetValue, @_TFieldSetValue);
   end;
-{$ENDIF}
+
 end.

@@ -7,18 +7,7 @@
 (*  Contains:
 (*                TCtxPasCompiler = class (TCtxCompilter)
 (*
-(*  Copyright (c) 2007 Michael Baytalsky
-(*
-(*  ------------------------------------------------------------
-(*  FILE        : CtxPasCompiler.pas
-(*  AUTHOR(S)   : Michael Baytalsky (mike@contextsoft.com)
-(*  VERSION     : 1.4
-(*  DELPHI      : Delphi 5,6,7,2005,2006
-(*  ------------------------------------------------------------
-(*  HISTORY     :
-(*    2/15/2005    v1.2     TCtxPasCompiler is separated from CtxScript unit
-(*
-(*    No changes to this file since v1.2.
+(*  Copyright (c) 2010 Michael Baytalsky
 (*
 (******************************************************************************)
 unit CtxPasCompiler;
@@ -73,6 +62,9 @@ type
   end;
 
 implementation
+
+{$I CtxVer.inc}
+{$I CtxD2009.inc}
 
 {  Parser Constants }
 
@@ -245,7 +237,7 @@ begin
       ParseError(CSCE_UNEXPECTEDEOF);
     GetNextChar;
     goto start;
-  end else if (FNextChar in set_digits) or (FNextChar in ['#', '$']) then
+  end else if CharInSet(FNextChar, set_digits) or CharInSet(FNextChar, ['#', '$']) then
   begin
     // Extract integer or floating point number
     if FNextChar = '#' then
@@ -261,9 +253,9 @@ begin
 
     FNextToken := '';
     DecimalPointCount := 0;
-    while (FNextChar in set_digits)
+    while CharInSet(FNextChar, set_digits)
       or (not (HexConst or (FNextTokenType = tokenStrConst)) and (FNextChar = '.'))
-      or (HexConst and (FNextChar in ['A'..'F'])) do
+      or (HexConst and CharInSet(FNextChar, ['A'..'F'])) do
     begin
       FNextToken := FNextToken + FNextChar;
       GetNextChar;
@@ -287,14 +279,14 @@ begin
     end else
       ParseError(CSCE_INVALIDNUMBER, FNextToken);
 
-  end else if FNextChar in set_alpha then
+  end else if CharInSet(FNextChar, set_alpha) then
   begin
     // Extract identifier
     FNextToken := '';
     repeat
       FNextToken := FNextToken + FNextChar;
       GetNextChar;
-    until not ((FNextChar in set_alnum) or (FNextChar >= #192));
+    until not (CharInSet(FNextChar, set_alnum) or (FNextChar >= #192));
 
     if FNextToken = DefArrayPropName then
       FNextTokenType := tokenUnknown
@@ -309,7 +301,7 @@ begin
     GetNextChar;
     FNextTokenType := tokenReference;
   end else begin
-    if FNextChar in ['/', '<', '>', ':', '('] then
+    if CharInSet(FNextChar, ['/', '<', '>', ':', '(']) then
     begin
       // Other small tokens
       FNextToken := FNextChar;
