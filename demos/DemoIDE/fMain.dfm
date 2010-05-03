@@ -1,9 +1,9 @@
 object frmCtxDemoIDE: TfrmCtxDemoIDE
   Left = 394
   Top = 332
-  Width = 620
-  Height = 462
   Caption = 'Context Scripting'
+  ClientHeight = 408
+  ClientWidth = 612
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -45,352 +45,22 @@ object frmCtxDemoIDE: TfrmCtxDemoIDE
       Top = 0
       Width = 464
       Height = 244
-      Cursor = crIBeam
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
       Font.Name = 'Courier New'
       Font.Style = []
-      ParentColor = False
-      ParentFont = False
       TabOrder = 0
       BookMarkOptions.BookmarkImages = Images
+      BookMarkOptions.Xoffset = 2
       Gutter.Font.Charset = DEFAULT_CHARSET
       Gutter.Font.Color = clWindowText
       Gutter.Font.Height = -11
-      Gutter.Font.Name = 'Terminal'
+      Gutter.Font.Name = 'Courier New'
       Gutter.Font.Style = []
+      Gutter.ShowLineNumbers = True
       Highlighter = SynPasSyn
-      Keystrokes = <
-        item
-          Command = ecUp
-          ShortCut = 38
-        end
-        item
-          Command = ecSelUp
-          ShortCut = 8230
-        end
-        item
-          Command = ecScrollUp
-          ShortCut = 16422
-        end
-        item
-          Command = ecDown
-          ShortCut = 40
-        end
-        item
-          Command = ecSelDown
-          ShortCut = 8232
-        end
-        item
-          Command = ecScrollDown
-          ShortCut = 16424
-        end
-        item
-          Command = ecLeft
-          ShortCut = 37
-        end
-        item
-          Command = ecSelLeft
-          ShortCut = 8229
-        end
-        item
-          Command = ecWordLeft
-          ShortCut = 16421
-        end
-        item
-          Command = ecSelWordLeft
-          ShortCut = 24613
-        end
-        item
-          Command = ecRight
-          ShortCut = 39
-        end
-        item
-          Command = ecSelRight
-          ShortCut = 8231
-        end
-        item
-          Command = ecWordRight
-          ShortCut = 16423
-        end
-        item
-          Command = ecSelWordRight
-          ShortCut = 24615
-        end
-        item
-          Command = ecPageDown
-          ShortCut = 34
-        end
-        item
-          Command = ecSelPageDown
-          ShortCut = 8226
-        end
-        item
-          Command = ecPageBottom
-          ShortCut = 16418
-        end
-        item
-          Command = ecSelPageBottom
-          ShortCut = 24610
-        end
-        item
-          Command = ecPageUp
-          ShortCut = 33
-        end
-        item
-          Command = ecSelPageUp
-          ShortCut = 8225
-        end
-        item
-          Command = ecPageTop
-          ShortCut = 16417
-        end
-        item
-          Command = ecSelPageTop
-          ShortCut = 24609
-        end
-        item
-          Command = ecLineStart
-          ShortCut = 36
-        end
-        item
-          Command = ecSelLineStart
-          ShortCut = 8228
-        end
-        item
-          Command = ecEditorTop
-          ShortCut = 16420
-        end
-        item
-          Command = ecSelEditorTop
-          ShortCut = 24612
-        end
-        item
-          Command = ecLineEnd
-          ShortCut = 35
-        end
-        item
-          Command = ecSelLineEnd
-          ShortCut = 8227
-        end
-        item
-          Command = ecEditorBottom
-          ShortCut = 16419
-        end
-        item
-          Command = ecSelEditorBottom
-          ShortCut = 24611
-        end
-        item
-          Command = ecToggleMode
-          ShortCut = 45
-        end
-        item
-          Command = ecCopy
-          ShortCut = 16429
-        end
-        item
-          Command = ecCut
-          ShortCut = 8238
-        end
-        item
-          Command = ecPaste
-          ShortCut = 8237
-        end
-        item
-          Command = ecDeleteChar
-          ShortCut = 46
-        end
-        item
-          Command = ecDeleteLastChar
-          ShortCut = 8
-        end
-        item
-          Command = ecDeleteLastChar
-          ShortCut = 8200
-        end
-        item
-          Command = ecDeleteLastWord
-          ShortCut = 16392
-        end
-        item
-          Command = ecUndo
-          ShortCut = 32776
-        end
-        item
-          Command = ecRedo
-          ShortCut = 40968
-        end
-        item
-          Command = ecLineBreak
-          ShortCut = 13
-        end
-        item
-          Command = ecLineBreak
-          ShortCut = 8205
-        end
-        item
-          Command = ecTab
-          ShortCut = 9
-        end
-        item
-          Command = ecShiftTab
-          ShortCut = 8201
-        end
-        item
-          Command = ecContextHelp
-          ShortCut = 16496
-        end
-        item
-          Command = ecSelectAll
-          ShortCut = 16449
-        end
-        item
-          Command = ecCopy
-          ShortCut = 16451
-        end
-        item
-          Command = ecPaste
-          ShortCut = 16470
-        end
-        item
-          Command = ecCut
-          ShortCut = 16472
-        end
-        item
-          Command = ecBlockIndent
-          ShortCut = 24649
-        end
-        item
-          Command = ecBlockUnindent
-          ShortCut = 24661
-        end
-        item
-          Command = ecLineBreak
-          ShortCut = 16461
-        end
-        item
-          Command = ecInsertLine
-          ShortCut = 16462
-        end
-        item
-          Command = ecDeleteWord
-          ShortCut = 16468
-        end
-        item
-          Command = ecDeleteLine
-          ShortCut = 16473
-        end
-        item
-          Command = ecDeleteEOL
-          ShortCut = 24665
-        end
-        item
-          Command = ecUndo
-          ShortCut = 16474
-        end
-        item
-          Command = ecRedo
-          ShortCut = 24666
-        end
-        item
-          Command = ecGotoMarker0
-          ShortCut = 16432
-        end
-        item
-          Command = ecGotoMarker1
-          ShortCut = 16433
-        end
-        item
-          Command = ecGotoMarker2
-          ShortCut = 16434
-        end
-        item
-          Command = ecGotoMarker3
-          ShortCut = 16435
-        end
-        item
-          Command = ecGotoMarker4
-          ShortCut = 16436
-        end
-        item
-          Command = ecGotoMarker5
-          ShortCut = 16437
-        end
-        item
-          Command = ecGotoMarker6
-          ShortCut = 16438
-        end
-        item
-          Command = ecGotoMarker7
-          ShortCut = 16439
-        end
-        item
-          Command = ecGotoMarker8
-          ShortCut = 16440
-        end
-        item
-          Command = ecGotoMarker9
-          ShortCut = 16441
-        end
-        item
-          Command = ecSetMarker0
-          ShortCut = 24624
-        end
-        item
-          Command = ecSetMarker1
-          ShortCut = 24625
-        end
-        item
-          Command = ecSetMarker2
-          ShortCut = 24626
-        end
-        item
-          Command = ecSetMarker3
-          ShortCut = 24627
-        end
-        item
-          Command = ecSetMarker4
-          ShortCut = 24628
-        end
-        item
-          Command = ecSetMarker5
-          ShortCut = 24629
-        end
-        item
-          Command = ecSetMarker6
-          ShortCut = 24630
-        end
-        item
-          Command = ecSetMarker7
-          ShortCut = 24631
-        end
-        item
-          Command = ecSetMarker8
-          ShortCut = 24632
-        end
-        item
-          Command = ecSetMarker9
-          ShortCut = 24633
-        end
-        item
-          Command = ecNormalSelect
-          ShortCut = 24654
-        end
-        item
-          Command = ecColumnSelect
-          ShortCut = 24643
-        end
-        item
-          Command = ecLineSelect
-          ShortCut = 24652
-        end
-        item
-          Command = ecMatchBracket
-          ShortCut = 24642
-        end>
       Lines.Strings = (
         'procedure Demo;'
         'var I;'
@@ -400,8 +70,17 @@ object frmCtxDemoIDE: TfrmCtxDemoIDE
         'end;')
       Options = [eoAltSetsColumnMode, eoAutoIndent, eoDragDropEditing, eoKeepCaretX, eoScrollByOneLess, eoScrollPastEof, eoScrollPastEol, eoShowScrollHint, eoSmartTabDelete, eoSmartTabs, eoTabsToSpaces, eoTrimTrailingSpaces]
       WantTabs = True
-      OnGutterClick = SynEditGutterClick
       OnSpecialLineColors = SynEditSpecialLineColors
+      RemovedKeystrokes = <
+        item
+          Command = ecContextHelp
+          ShortCut = 112
+        end>
+      AddedKeystrokes = <
+        item
+          Command = ecContextHelp
+          ShortCut = 16496
+        end>
     end
     object tsDebug: TPageControl
       Left = 0
@@ -482,7 +161,6 @@ object frmCtxDemoIDE: TfrmCtxDemoIDE
     ButtonHeight = 24
     ButtonWidth = 24
     EdgeBorders = [ebTop, ebBottom]
-    Flat = True
     Images = Images
     Indent = 5
     List = True
@@ -543,6 +221,7 @@ object frmCtxDemoIDE: TfrmCtxDemoIDE
     Height = 19
     Panels = <>
     SimplePanel = True
+    ExplicitTop = 391
   end
   object MainMenu: TMainMenu
     Images = Images
@@ -777,7 +456,7 @@ object frmCtxDemoIDE: TfrmCtxDemoIDE
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000008080800040202000402020004020200080808000000000000000
       0000000000000000000000000000000000008080800080808000808080008080
       8000808080008080800080808000808080008080800080808000808080008080
       8000808080008080800000000000000000000000000000000000000000000000
@@ -785,7 +464,7 @@ object frmCtxDemoIDE: TfrmCtxDemoIDE
       00000000000000000000000000000000000000000000000000000000000000FF
       000000FF000000FF000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      000000008000000080000020C0000020C0000020C00040202000402020000000
       000000000000000000000000000000000000808080000000000000FFFF00C0C0
       C00000FFFF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0
       C00000FFFF00808080000000000000000000000000000000000000FFFF000000
@@ -793,63 +472,63 @@ object frmCtxDemoIDE: TfrmCtxDemoIDE
       0000000000000000000000000000000000000000000000000000000000000080
       0000008000000080000000FF0000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000008080800000000000C0C0C00000FF
+      80000000FF000000FF000020E0000020E0000020C0000020C0000020C0004020
+      2000000000000000000000000000000000008080800000000000C0C0C00000FF
       FF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0C00000FF
       FF00C0C0C00080808000000000000000000000000000000000000000000000FF
       FF0000FFFF000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000080
       000000800000008000000080000000FF00000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000080000000800000000000000000000000
-      000000000000000000000000000000000000808080000000000000FFFF00C0C0
+      0000000000000000000000000000000000000000000000000000808080000000
+      80000000FF000020E0000020E0000020E0000020E0000020E0000020C0004020
+      200080808000000000000000000000000000808080000000000000FFFF00C0C0
       C00000FFFF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0
       C00000FFFF008080800000000000000000000000000000000000000000000000
       00000000000000FFFF0000FFFF00000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000080
       00000080000000800000008000000080000000FF000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000FF000000FF000000FF0000008000000000000000
-      0000000000000000000000000000000000008080800000000000C0C0C00000FF
+      0000000000000000000000000000000000000000000000000000000080000000
+      FF000000FF000020E0000020E0000020E0000020E0000020E0000020C0000020
+      C000402020000000000000000000000000008080800000000000C0C0C00000FF
       FF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0C00000FF
       FF00C0C0C0008080800000000000000000000000000000000000000000000000
       0000000000000000000000FFFF0000FFFF0000FFFF0000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000080
       0000008000000080000000800000008000000080000000FF0000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000FF000000FF000000FF000000FF000000FF00000080000000
-      000000000000000000000000000000000000808080000000000000FFFF00C0C0
+      0000000000000000000000000000000000000000000000000000000080000000
+      FF000000FF000020E0000020E0000020E0000020E0000020E0000020E0000020
+      C00040202000000000000000000000000000808080000000000000FFFF00C0C0
       C00000FFFF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0
       C00000FFFF008080800000000000000000000000000000000000000000000000
       000000000000000000000000000000FFFF0000FFFF0000FFFF0000FFFF000000
       0000000000000000000000000000000000000000000000000000000000000080
       000000800000008000000080000000800000008000000080000000FF00000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000FF0080808000FFFFFF000000FF000000FF00000080000000
-      0000000000000000000000000000000000008080800000000000C0C0C00000FF
+      0000000000000000000000000000000000000000000000000000000080000000
+      FF000000FF00FFFFFF000020E0000020E0000020E0000020E0000020E0000020
+      C000402020000000000000000000000000008080800000000000C0C0C00000FF
       FF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0C00000FF
       FF00C0C0C0008080800000000000000000000000000000000000000000000000
       00000000000000FFFF0000FFFF0000FFFF0000FFFF0000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000080
       0000008000000080000000800000008000000080000000FF0000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
-      000000000000000000000000FF0000FFFF000000FF000000FF00000000000000
-      000000000000000000000000000000000000808080000000000000FFFF00C0C0
+      0000000000000000000000000000000000000000000000000000808080000000
+      80000000FF000000FF00FFFFFF000020E0000020E0000020E0000000FF004020
+      200080808000000000000000000000000000808080000000000000FFFF00C0C0
       C00000FFFF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0C00000FFFF00C0C0
       C00000FFFF008080800000000000000000000000000000000000000000000000
       000000000000000000000000000000FFFF0000FFFF0000FFFF00000000000000
       0000000000000000000000000000000000000000000000000000000000000080
       00000080000000800000008000000080000000FF000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      00000000000000000000000000000000FF000000FF0000000000000000000000
-      0000000000000000000000000000000000008080800000000000000000000000
+      80000000FF000000FF000000FF000000FF000000FF000000FF000000FF004020
+      2000000000000000000000000000000000008080800000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000008080800000000000000000000000000000000000000000000000
       00000000000000000000000000000000000000FFFF0000FFFF0000FFFF000000
       0000000000000000000000000000000000000000000000000000000000000080
       000000800000008000000080000000FF00000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      000000008000000080000000FF000000FF000000FF0000008000000080000000
       00000000000000000000000000000000000080808000C0C0C00000FFFF00C0C0
       C00000FFFF00C0C0C00000FFFF00C0C0C0008080800080808000808080008080
       8000808080008080800000000000000000000000000000000000000000000000
@@ -857,7 +536,7 @@ object frmCtxDemoIDE: TfrmCtxDemoIDE
       FF00000000000000000000000000000000000000000000000000000000000080
       0000008000000080000000FF0000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
-      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000008080800000008000000080000000800080808000000000000000
       0000000000000000000000000000000000000000000080808000C0C0C00000FF
       FF00C0C0C00000FFFF00C0C0C000808080000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -1149,9 +828,9 @@ object frmCtxDemoIDE: TfrmCtxDemoIDE
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF80017FFF
-      FFFFFFFF00019FFFE3FFFFFF400187FFE1FFFFFF4001C1FFE0FFFE7F4001E07F
-      E07FFC3F4001F01FE03FF81F4001F807E01FF81F4001E01FE03FFC3F4001F81F
-      E07FFE7F7FF9FC0FE0FFFFFF0003FF07E1FFFFFF80FFFFC3E3FFFFFFC1FFFFF3
+      FFFFF83F00019FFFE3FFF01F400187FFE1FFE00F4001C1FFE0FFC0074001E07F
+      E07FC0074001F01FE03FC0074001F807E01FC0074001E01FE03FC0074001F81F
+      E07FE00F7FF9FC0FE0FFF01F0003FF07E1FFF83F80FFFFC3E3FFFFFFC1FFFFF3
       FFFFFFFFFFFFFFF9FFFFFFFFFFFFFFFFF800FFFFFF00FFFFF800E007FF00FFFF
       2000E007FF00F1830000E007FF00FBC70000E0070000F9C70000E0070000F807
       0000E0070000FD8F0000E0070000FC8F0000E0070023FC8F0000E0070001FE1F
@@ -1267,15 +946,7 @@ object frmCtxDemoIDE: TfrmCtxDemoIDE
     end
   end
   object SynAutoCorrect: TSynAutoCorrect
-    AutoCorrectOnMouseDown = False
-    BeepOnAutoCorrect = True
-    Enabled = True
     Editor = SynEdit
-    IgnoreCase = True
-    ReplaceItems.Strings = (
-      'teh,the'
-      'begn,begin'
-      'whit,with')
     Left = 416
     Top = 200
   end
@@ -1315,6 +986,7 @@ object frmCtxDemoIDE: TfrmCtxDemoIDE
   end
   object SynPasSyn: TSynPasSyn
     AsmAttri.Foreground = clGreen
+    CommentAttri.Foreground = clGreen
     NumberAttri.Foreground = clMaroon
     NumberAttri.Style = [fsBold]
     StringAttri.Foreground = clNavy

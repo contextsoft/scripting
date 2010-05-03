@@ -167,6 +167,7 @@ type
   public
     SymbolType: TSymbolType;
     SymbolName: String;
+    SymbolVarTypeName: String;
     Value: Variant;
     function Clone: TSymbol;
   end;
@@ -760,6 +761,7 @@ const
   procedure RegisterIntrospector(Introspector: TCtxIntrospector);
   procedure UnRegisterIntrospector(Introspector: TCtxIntrospector);
   function FindIntrospector(const ClassName: String): TCtxIntrospector;
+  function GetClassIntrospector(ClassName: String): TCtxIntrospector;
 
   function ResolveObjectName(CtxScript: TCtxScript; Obj: TObject; const Name: String; var Index: Integer): TCtxIntrospector;
   function InvokeObjectMethod(CtxScript: TCtxScript;
@@ -989,6 +991,27 @@ begin
     CtxIntrospectors.Clear;
   finally
     FinalizingIntrospectors := False;
+  end;
+end;
+
+function GetClassIntrospector(ClassName: String): TCtxIntrospector;
+var
+  ClassInstance: TClass;
+begin
+  Result := nil;
+  while ClassName <> '' do
+  begin
+    Result := FindIntrospector(ClassName);
+    if Result <> nil then
+      exit;
+    ClassName := '';
+    ClassInstance := GetClass(ClassName);
+    if ClassInstance <> nil then
+    begin
+      ClassInstance := ClassInstance.ClassParent;
+      if ClassInstance <> nil then
+        ClassName := ClassInstance.ClassName;
+    end;
   end;
 end;
 
@@ -2845,6 +2868,7 @@ begin
   Result := TSymbol.Create;
   Result.SymbolType := SymbolType;
   Result.SymbolName := SymbolName;
+  Result.SymbolVarTypeName := SymbolVarTypeName;
   Result.Value := Value;
 end;
 

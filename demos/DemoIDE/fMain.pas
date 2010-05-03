@@ -119,7 +119,7 @@ type
     procedure ActionsUpdate(Action: TBasicAction; var Handled: Boolean);
     procedure actRunExecute(Sender: TObject);
     procedure actTraceIntoExecute(Sender: TObject);
-    procedure SynEditGutterClick(Sender: TObject; X, Y, Line: Integer;
+    procedure SynEditGutterClick(Sender: TObject; Button: TMouseButton; X, Y, Line: Integer;
       mark: TSynEditMark);
     procedure actStepOverExecute(Sender: TObject);
     procedure actAddWatchExecute(Sender: TObject);
@@ -380,7 +380,7 @@ var
   I: Integer;
 begin
   SynEdit.Marks.GetMarksForLine(Line, Marks);
-  for I := 1 to maxMarks do
+  for I := 1 to MAX_MARKS do
   begin
     if Marks[I] = nil then break;
     if Marks[I].ImageIndex = 9 then
@@ -392,6 +392,8 @@ procedure TfrmCtxDemoIDE.actBreakpointExecute(Sender: TObject);
 var
   LineNo: Integer;
 begin
+  if FMethod = nil then exit;
+  
   LineNo := SynEdit.CaretY;
   if not IsSynEditBreakPoint(LineNo) then
   begin
@@ -476,7 +478,7 @@ var
 begin
   SynEdit.Marks.GetMarksForLine(Line, Marks);
   Result := False;
-  for I := 1 to maxMarks do
+  for I := 1 to MAX_MARKS do
   begin
     if Marks[I] = nil then exit;
     if Marks[I].ImageIndex = 9 then
@@ -598,11 +600,14 @@ begin
   end;
 end;
 
-procedure TfrmCtxDemoIDE.SynEditGutterClick(Sender: TObject; X, Y,
+procedure TfrmCtxDemoIDE.SynEditGutterClick(Sender: TObject; Button: TMouseButton; X, Y,
   Line: Integer; mark: TSynEditMark);
 begin
-  SynEdit.CaretY := Line;
-  actBreakpointExecute(Self);
+  if Button = mbLeft then
+  begin
+    SynEdit.CaretY := Line;
+    actBreakpointExecute(Self);
+  end;
 end;
 
 procedure TfrmCtxDemoIDE.actAddWatchExecute(Sender: TObject);

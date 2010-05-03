@@ -27,7 +27,7 @@ implementation
 {$IFDEF USE_SYNTAX_HIGHLIGHT}
 uses
   Windows, SysUtils, SynEditHighlighter, SynHighlighterPas, SynEdit,
-  SynEditKeyCmds, SynCompletionProposal;
+  SynEditKeyCmds, SynCompletionProposal, SynEditTypes, SynEditSearch;
 
 type
   TCtxSynCompletionProposal = class (TSynCompletionProposal)
@@ -38,8 +38,8 @@ type
     procedure SynCompletionProposalExecute(
       Kind: SynCompletionType; Sender: TObject; var AString: String; var x,
       y: Integer; var CanExecute: Boolean);
-    procedure SynCompletionProposalPaintItem(Index: Integer; ACanvas: TCanvas;
-      Rect: TRect; var aCustomDraw: boolean);
+    procedure SynCompletionProposalPaintItem(Sender: TObject; Index: Integer;
+      ACanvas: TCanvas; Rect: TRect; var aCustomDraw: boolean);
   end;
 
 function ExtractObjectName(const Value: String; var LeftPart: String): String;
@@ -159,8 +159,8 @@ begin
   CanExecute := True;
 end;
 
-procedure TCtxSynCompletionProposal.SynCompletionProposalPaintItem(Index: Integer; ACanvas: TCanvas;
-  Rect: TRect; var aCustomDraw: boolean);
+procedure TCtxSynCompletionProposal.SynCompletionProposalPaintItem(Sender: TObject;
+  Index: Integer; ACanvas: TCanvas; Rect: TRect; var aCustomDraw: boolean);
 begin
   //P := Owner as TSynCompletionProposal;
     (*
@@ -218,6 +218,7 @@ begin
     WantTabs := True;
     PopupMenu := Memo.PopupMenu;
     OnDblClick := Memo.OnDblClick;
+    SearchEngine := TSynEditSearch.Create(SynEdit);
   end;
   Memo.Free;
   PComponent(MemoField)^ := SynEdit;
@@ -226,7 +227,7 @@ begin
   with SynCompletionProposal do
   begin
     DefaultType := ctCode;
-    Options := [scoLimitToMatchedText, scoUseBuiltInTimer, scoUseInsertList, scoEndCharCompletion];
+    Options := [scoLimitToMatchedText, scoUseBuiltInTimer, scoUseInsertList, scoEndCharCompletion, scoCompleteWithEnter];
     OnExecute := SynCompletionProposalExecute;
     OnPaintItem := SynCompletionProposalPaintItem;
     EndOfTokenChr := '"()[]. ';

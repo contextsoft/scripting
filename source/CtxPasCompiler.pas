@@ -101,7 +101,7 @@ const
   tokenRaise        = 2020;
   tokenException    = 2021;
   tokenWith         = tokenUnknown; // 2022;
-  
+
   tokenRem2Begin    = 2024;
   tokenRem          = 2025;
   tokenGoto         = 2026;
@@ -445,8 +445,11 @@ end;
 
 procedure TCtxPasCompiler.DeclVarList(SymType: TSymbolType);
 var
-  VarName: String;
+  VarName, TypeName: String;
+  FirstSymbolInList: Integer;
+  I: Integer;
 begin
+  FirstSymbolInList := SymbolCount;
   while True do
   begin
     VarName := Match(tokenIdentifier);
@@ -455,11 +458,13 @@ begin
     if FNextTokenType <> Ord(',') then break;
     GetNextToken;
   end;
-  // Skip type
+  // Variable type
   if FNextTokenType = Ord(':') then
   begin
     GetNextToken;
-    Match(tokenIdentifier);
+    TypeName := Match(tokenIdentifier);
+    for I := FirstSymbolInList to SymbolCount - 1 do
+      Symbols[I].SymbolVarTypeName := TypeName;
   end;
 end;
 
@@ -514,11 +519,13 @@ procedure TCtxPasCompiler.Declarations;
 begin
   while True do
   begin
-    if FNextTokenType = tokenVar then begin
+    if FNextTokenType = tokenVar then
+    begin
       GetNextToken;
       DeclVarList(stLocalVar);
       Match(Ord(';'));
-    end else if FNextTokenType = tokenConst then begin
+    end else if FNextTokenType = tokenConst then
+    begin
       DeclConstList;
     end else break;
   end;

@@ -34,10 +34,10 @@ requires
   vcl,
   rtl,
   dbrtl,
-  // SynEdit_D7,
   vclactnband,
   vclx,
-  vcldb;
+  vcldb,
+  SynEdit_R7;
 
 contains
   CtxScript in '..\source\CtxScript.pas',

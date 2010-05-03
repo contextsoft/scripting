@@ -70,6 +70,7 @@ resourcestring
 
 const
   CtxUnitVersion = 102;
+
 implementation
 
 { TCtxClass }
