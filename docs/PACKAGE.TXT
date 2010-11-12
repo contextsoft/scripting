@@ -116,3 +116,6 @@ exists if we run any other query, returning result set of unknown
 type. We'll have to explicitly declare (or type-cast) the result
 set to a defined class if we are to have option to address 
 its fields by names without having to use FieldByName method.
+
+
+This is some file to think about...
