@@ -36,8 +36,7 @@ requires
   dbrtl,
   vclactnband,
   vclx,
-  vcldb,
-  SynEdit_R7;
+  vcldb;
 
 contains
   CtxScript in '..\source\CtxScript.pas',

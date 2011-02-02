@@ -178,109 +178,109 @@ end;
 procedure _UpperCase(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do 
-    Result := UpperCase(GetParam(1));
+    Result := UpperCase(VarToStr(GetParam(1)));
 end;
 
 procedure _LowerCase(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
-  with Sender do 
-    Result := LowerCase(GetParam(1));
+  with Sender do
+    Result := LowerCase(VarToStr(GetParam(1)));
 end;
 
 procedure _CompareStr(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := CompareStr(GetParam(2), GetParam(1));
+    Result := CompareStr(VarToStr(GetParam(2)), VarToStr(GetParam(1)));
 end;
 
 procedure _CompareText(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := CompareText(GetParam(2), GetParam(1));
+    Result := CompareText(VarToStr(GetParam(2)), VarToStr(GetParam(1)));
 end;
 
 procedure _SameText(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := SameText(GetParam(2), GetParam(1));
+    Result := SameText(VarToStr(GetParam(2)), VarToStr(GetParam(1)));
 end;
 
 procedure _AnsiUpperCase(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := AnsiUpperCase(GetParam(1));
+    Result := AnsiUpperCase(VarToStr(GetParam(1)));
 end;
 
 procedure _AnsiLowerCase(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := AnsiLowerCase(GetParam(1));
+    Result := AnsiLowerCase(VarToStr(GetParam(1)));
 end;
 
 procedure _AnsiCompareStr(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := AnsiCompareStr(GetParam(2), GetParam(1));
+    Result := AnsiCompareStr(VarToStr(GetParam(2)), VarToStr(GetParam(1)));
 end;
 
 procedure _AnsiSameStr(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := AnsiSameStr(GetParam(2), GetParam(1));
+    Result := AnsiSameStr(VarToStr(GetParam(2)), VarToStr(GetParam(1)));
 end;
 
 procedure _AnsiCompareText(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := AnsiCompareText(GetParam(2), GetParam(1));
+    Result := AnsiCompareText(VarToStr(GetParam(2)), VarToStr(GetParam(1)));
 end;
 
 procedure _AnsiSameText(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := AnsiSameText(GetParam(2), GetParam(1));
+    Result := AnsiSameText(VarToStr(GetParam(2)), VarToStr(GetParam(1)));
 end;
 
 procedure _Trim(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := Trim(GetParam(1));
+    Result := Trim(VarToStr(GetParam(1)));
 end;
 
 procedure _TrimLeft(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := TrimLeft(GetParam(1));
+    Result := TrimLeft(VarToStr(GetParam(1)));
 end;
 
 procedure _TrimRight(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := TrimRight(GetParam(1));
+    Result := TrimRight(VarToStr(GetParam(1)));
 end;
 
 procedure _QuotedStr(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := QuotedStr(GetParam(1));
+    Result := QuotedStr(VarToStr(GetParam(1)));
 end;
 
 procedure _AnsiQuotedStr(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := AnsiQuotedStr(GetParam(2), VarToStr(GetParam(1))[1]);
+    Result := AnsiQuotedStr(VarToStr(GetParam(2)), VarToStr(GetParam(1))[1]);
 end;
 
 procedure _AdjustLineBreaks(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := AdjustLineBreaks(GetParam(1));
+    Result := AdjustLineBreaks(VarToStr(GetParam(1)));
 end;
 
 procedure _IsValidIdent(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := IsValidIdent(GetParam(1));
+    Result := IsValidIdent(VarToStr(GetParam(1)));
 end;
 
 procedure _IntToStr(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
@@ -298,13 +298,13 @@ end;
 procedure _StrToInt(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := StrToInt(GetParam(1));
+    Result := StrToInt(VarToStr(GetParam(1)));
 end;
 
 procedure _StrToIntDef(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := StrToIntDef(GetParam(2), GetParam(1));
+    Result := StrToIntDef(VarToStr(GetParam(2)), GetParam(1));
 end;
 
 procedure _FileAge(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
@@ -316,13 +316,13 @@ end;
 procedure _FileExists(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := FileExists(GetParam(1));
+    Result := FileExists(VarToStr(GetParam(1)));
 end;
 
 procedure _FileGetAttr(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   with Sender do
-    Result := FileGetAttr(GetParam(1));
+    Result := FileGetAttr(VarToStr(GetParam(1)));
 end;
 
 procedure _FileSetAttr(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
