@@ -1997,6 +1997,17 @@ begin
   else Result := NULL;
 end;
 
+function VarEqual(const V1, V2: Variant): Boolean;
+var
+  V1Null, V2Null: Boolean;
+begin
+  V1Null := FindVarData(V1)^.VType <= varNull;
+  V2Null := FindVarData(V2)^.VType <= varNull;
+  if V1Null or V2Null then
+    Result := V1Null and V2Null
+  else Result := V1 = V2;
+end;
+
 procedure TCtxScript.ExecutePCode;
 var
   PCodeRec: ^TCtxPCodeRec;
@@ -2249,8 +2260,8 @@ begin
       CSOP_GREATEROREQUAL: Result := Pop >= Result;
       CSOP_LESSOREQUAL: Result := Pop <= Result;
 
-      CSOP_EQUAL: Result := Pop = Result;
-      CSOP_NOTEQUAL: Result := Pop <> Result;
+      CSOP_EQUAL: Result := VarEqual(Pop, Result);
+      CSOP_NOTEQUAL: Result := not VarEqual(Pop, Result);
       CSOP_NOT: Result := not Result;
       CSOP_AND: Result := Pop and Result;
       CSOP_OR: Result := Pop or Result;
