@@ -792,6 +792,29 @@ begin
   end;
 end;
 
+procedure _Delete(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
+var
+  Str: String;
+begin
+  with Sender do
+  begin
+    Str := VarToStr(GetVarByRef(GetParam(3)));
+    Delete(Str, Integer(GetParam(2)), Integer(GetParam(1)));
+    Result := Str;
+  end;
+end;
+
+procedure _Copy(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
+var
+  Str: String;
+begin
+  with Sender do
+  begin
+    Str := VarToStr(GetVarByRef(GetParam(3)));
+    Result := Copy(Str, Integer(GetParam(2)), Integer(GetParam(1)));
+  end;
+end;
+
 procedure InitCtxSysUtils;
 begin
   // System methods registration
@@ -915,6 +938,8 @@ begin
 
     AddMethod('SetLength', @_SetLength, 2);
     AddMethod('Length', @_Length, 1);
+    AddMethod('Delete', @_Delete, 3);
+    AddMethod('Copy', @_Copy, 3);
 
     AddConst('faAnyFile', faAnyFile);
     AddConst('faDirectory', faDirectory);

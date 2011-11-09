@@ -374,6 +374,18 @@ begin
     TStrings(Instance).Strings[GetParam(1)] := Result;
 end;
 
+procedure _TStringsGetValues(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
+begin
+  with Sender do
+    Result := TStrings(Instance).Values[GetParam(1)];
+end;
+
+procedure _TStringsSetValues(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
+begin
+  with Sender do
+    TStrings(Instance).Values[GetParam(1)] := Result;
+end;
+
 procedure _TStringsSaveToFile(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
 begin
   TStrings(Instance).SaveToFile(Sender.GetParam(1));
@@ -566,6 +578,7 @@ initialization
     AddProp('Count', @_TStringsGetCount);
     AddProp('Text', @_TStringsGetText, @_TStringsSetText);
     AddArrayProp('Strings', @_TStringsGetStrings, @_TStringsSetStrings, 1);
+    AddArrayProp('Values', @_TStringsGetValues, @_TStringsSetValues, 1);
     { Default array property }
     AddDefaultArrayProp(@_TStringsGetStrings, @_TStringsSetStrings, 1);
 
