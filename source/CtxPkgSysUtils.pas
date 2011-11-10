@@ -800,19 +800,15 @@ begin
   begin
     Str := VarToStr(GetVarByRef(GetParam(3)));
     Delete(Str, Integer(GetParam(2)), Integer(GetParam(1)));
+    SetVarByRef(GetParam(3), Str);
     Result := Str;
   end;
 end;
 
 procedure _Copy(Sender: TCtxScript; InvokeType: TCtxInvokeType; Instance: TObject; ParCount: Integer);
-var
-  Str: String;
 begin
   with Sender do
-  begin
-    Str := VarToStr(GetVarByRef(GetParam(3)));
-    Result := Copy(Str, Integer(GetParam(2)), Integer(GetParam(1)));
-  end;
+    Result := Copy(VarToStr(GetParam(3)), Integer(GetParam(2)), Integer(GetParam(1)));
 end;
 
 procedure InitCtxSysUtils;
