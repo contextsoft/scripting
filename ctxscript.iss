@@ -3,7 +3,7 @@
 [Setup]
 AppName=Context Scripting
 AppVerName=Context Scripting v.1.40
-AppCopyright=Copyright © 2004-2010, Michael Baytalsky
+AppCopyright=Copyright © 2004-2014, Michael Baytalsky
 DefaultDirName={pf}\Context Software\Scripting
 DefaultGroupName=Context Scripting
 ;UninstallDisplayIcon={app}\
@@ -26,6 +26,11 @@ Name: "libd2006"; Description: "Delphi 2006 Units"; Types: Default
 Name: "libd2007"; Description: "Delphi 2007 Units"; Types: Default
 Name: "libd2009"; Description: "Delphi 2009 Units"; Types: Default
 Name: "libd2010"; Description: "Delphi 2010 Units"; Types: Default
+Name: "libd2011"; Description: "Delphi XE/RAD Studio XE Library"; Types: Default
+Name: "libdXE2"; Description: "Delphi XE2/RAD Studio XE2 Library"; Types: Default
+Name: "libdXE3"; Description: "Delphi XE3/RAD Studio XE3 Library"; Types: Default
+Name: "libdXE4"; Description: "Delphi XE4/RAD Studio XE4 Library"; Types: Default
+Name: "libdXE5"; Description: "Delphi XE5/RAD Studio XE5 Library"; Types: Default
 Name: "sources"; Description: "Source Code"; Types: Default
 Name: "demos"; Description: "Demos"; Types: Default
 Name: "help"; Description: "Help"; Types: Default
@@ -51,6 +56,21 @@ Source: "source\*.*"; Excludes: "*.pas"; DestDir: "{app}\libd2009"; CopyMode: al
 
 Source: "lib\d2010\*.*"; DestDir: "{app}\libd2010"; CopyMode: alwaysoverwrite; Components: libd2010
 Source: "source\*.*"; Excludes: "*.pas"; DestDir: "{app}\libd2010"; CopyMode: alwaysoverwrite; Components: libd2010
+
+Source: "lib\d2011\*.*"; DestDir: "{app}\libd2011"; CopyMode: alwaysoverwrite; Components: libd2011
+Source: "source\*.*"; Excludes: "*.pas"; DestDir: "{app}\libd2011"; CopyMode: alwaysoverwrite; Components: libd2011
+
+Source: "lib\dXE2\*.*"; DestDir: "{app}\libdXE2"; CopyMode: alwaysoverwrite; Components: libdXE2
+Source: "source\*.*"; Excludes: "*.pas"; DestDir: "{app}\libdXE2"; CopyMode: alwaysoverwrite; Components: libdXE2
+
+Source: "lib\dXE3\*.*"; DestDir: "{app}\libdXE3"; CopyMode: alwaysoverwrite; Components: libdXE3
+Source: "source\*.*"; Excludes: "*.pas"; DestDir: "{app}\libdXE3"; CopyMode: alwaysoverwrite; Components: libdXE3
+
+Source: "lib\dXE4\*.*"; DestDir: "{app}\libdXE4"; CopyMode: alwaysoverwrite; Components: libdXE4
+Source: "source\*.*"; Excludes: "*.pas"; DestDir: "{app}\libdXE4"; CopyMode: alwaysoverwrite; Components: libdXE4
+
+Source: "lib\dXE5\*.*"; DestDir: "{app}\libdXE5"; CopyMode: alwaysoverwrite; Components: libdXE5
+Source: "source\*.*"; Excludes: "*.pas"; DestDir: "{app}\libdXE5"; CopyMode: alwaysoverwrite; Components: libdXE5
 
 Source: "demos\*.*"; DestDir: "{app}\demos"; Flags: recursesubdirs; Components: demos
 
@@ -78,6 +98,11 @@ Root: HKCU; Subkey: "Software\Borland\BDS\4.0\Known Packages"; ValueType: string
 Root: HKCU; Subkey: "Software\Borland\BDS\5.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libd2007\CtxScriptPkgD2007.bpl"; Flags: uninsdeletevalue; Components: libd2007
 Root: HKCU; Subkey: "Software\CodeGear\BDS\6.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libd2009\CtxScriptPkgD2009.bpl"; Flags: uninsdeletevalue; Components: libd2009
 Root: HKCU; Subkey: "Software\CodeGear\BDS\7.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libd2010\CtxScriptPkgD2010.bpl"; Flags: uninsdeletevalue; Components: libd2010
+Root: HKCU; Subkey: "Software\CodeGear\BDS\8.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libd2011\CtxScriptPkgD2011.bpl"; Flags: uninsdeletevalue; Components: libd2011
+Root: HKCU; Subkey: "Software\CodeGear\BDS\9.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE2\CtxScriptPkgDXE2.bpl"; Flags: uninsdeletevalue; Components: libdXE2
+Root: HKCU; Subkey: "Software\CodeGear\BDS\10.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE3\CtxScriptPkgDXE3.bpl"; Flags: uninsdeletevalue; Components: libdXE3
+Root: HKCU; Subkey: "Software\CodeGear\BDS\11.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE4\CtxScriptPkgDXE4.bpl"; Flags: uninsdeletevalue; Components: libdXE4
+Root: HKCU; Subkey: "Software\CodeGear\BDS\12.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE5\CtxScriptPkgDXE5.bpl"; Flags: uninsdeletevalue; Components: libdXE5
 
 [Run]
 Filename: "{app}\help\instlhlp.exe"; Parameters: "-IP borland\delphi 7.0 libd7 source"; StatusMsg: "Adding library paths (Delphi 7)..."; Components: libd7

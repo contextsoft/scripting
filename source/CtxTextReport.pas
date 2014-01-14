@@ -207,7 +207,7 @@ var
   begin
     P := StrPos(@PChar(Str)[FromPos - 1], PChar(SubStr));
     if P <> nil then
-      Result := Longint(P) - Longint(PChar(Str)) + 1
+      Result := Longint(P) div SizeOf(Char) - Longint(PChar(Str)) div SizeOf(Char) + 1
     else Result := 0;
   end;
 

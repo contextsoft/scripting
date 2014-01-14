@@ -15,6 +15,8 @@ procedure Register;
 
 implementation
 
+{$I CtxVer.inc}
+
 uses
   SysUtils, Classes, Controls, ActnList, Dialogs,
   {$IFDEF VER130}
@@ -22,6 +24,7 @@ uses
   {$ELSE}
   DesignEditors, DesignIntf,
   {$ENDIF}
+  {$IFDEF D2013_ORLATER}Actions,{$ENDIF}
   CtxScript, CtxPasCompiler, CtxUnit, CtxUnitEditor, CtxActions, CtxTextReport,
   CtxPkgSysUtils, CtxPkgClasses, CtxPkgDB, CtxPgkGraphics;
 

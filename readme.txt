@@ -1,5 +1,5 @@
 =============================================================
-Context Scripting Suite for Delphi 7,2005,2006,2007,2009,2010
+Context Scripting Suite for Delphi 7,2005,2006,2007,2009,2010,XE,XE2,XE3,XE4,XE5
 Copyright (c) 2004-2010, Michael Baytalsky
 All Rights Reserved
 -------------------------------------------------------------
