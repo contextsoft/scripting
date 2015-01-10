@@ -108,12 +108,12 @@ Root: HKCU; Subkey: "Software\Borland\BDS\5.0\Known Packages"; ValueType: string
 Root: HKCU; Subkey: "Software\CodeGear\BDS\6.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libd2009\CtxScriptPkgD2009.bpl"; Flags: uninsdeletevalue; Components: libd2009
 Root: HKCU; Subkey: "Software\CodeGear\BDS\7.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libd2010\CtxScriptPkgD2010.bpl"; Flags: uninsdeletevalue; Components: libd2010
 Root: HKCU; Subkey: "Software\CodeGear\BDS\8.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libd2011\CtxScriptPkgD2011.bpl"; Flags: uninsdeletevalue; Components: libd2011
-Root: HKCU; Subkey: "Software\CodeGear\BDS\9.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE2\CtxScriptPkgDXE2.bpl"; Flags: uninsdeletevalue; Components: libdXE2
-Root: HKCU; Subkey: "Software\CodeGear\BDS\10.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE3\CtxScriptPkgDXE3.bpl"; Flags: uninsdeletevalue; Components: libdXE3
-Root: HKCU; Subkey: "Software\CodeGear\BDS\11.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE4\CtxScriptPkgDXE4.bpl"; Flags: uninsdeletevalue; Components: libdXE4
-Root: HKCU; Subkey: "Software\CodeGear\BDS\12.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE5\CtxScriptPkgDXE5.bpl"; Flags: uninsdeletevalue; Components: libdXE5
-Root: HKCU; Subkey: "Software\CodeGear\BDS\14.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE6\CtxScriptPkgDXE6.bpl"; Flags: uninsdeletevalue; Components: libdXE6
-Root: HKCU; Subkey: "Software\CodeGear\BDS\15.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE7\CtxScriptPkgDXE7.bpl"; Flags: uninsdeletevalue; Components: libdXE7
+Root: HKCU; Subkey: "Software\Embarcadero\BDS\9.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE2\CtxScriptPkgDXE2.bpl"; Flags: uninsdeletevalue; Components: libdXE2
+Root: HKCU; Subkey: "Software\Embarcadero\BDS\10.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE3\CtxScriptPkgDXE3.bpl"; Flags: uninsdeletevalue; Components: libdXE3
+Root: HKCU; Subkey: "Software\Embarcadero\BDS\11.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE4\CtxScriptPkgDXE4.bpl"; Flags: uninsdeletevalue; Components: libdXE4
+Root: HKCU; Subkey: "Software\Embarcadero\BDS\12.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE5\CtxScriptPkgDXE5.bpl"; Flags: uninsdeletevalue; Components: libdXE5
+Root: HKCU; Subkey: "Software\Embarcadero\BDS\14.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE6\CtxScriptPkgDXE6.bpl"; Flags: uninsdeletevalue; Components: libdXE6
+Root: HKCU; Subkey: "Software\Embarcadero\BDS\15.0\Known Packages"; ValueType: string; ValueData: "Context Scripting"; ValueName: "{app}\libdXE7\CtxScriptPkgDXE7.bpl"; Flags: uninsdeletevalue; Components: libdXE7
 
 
 [Run]
