@@ -2863,12 +2863,12 @@ end;
 function StrToDouble(const Value: String): Double;
 var OldDS: Char;
 begin
-  OldDS := {$IFDEF D2012_ORLATER}FormatSettings.{$ENDIF}DecimalSeparator;
+  OldDS := {$IFDEF DXE2_ORLATER}FormatSettings.{$ENDIF}DecimalSeparator;
   try
-    {$IFDEF D2012_ORLATER}FormatSettings.{$ENDIF}DecimalSeparator := '.';
+    {$IFDEF DXE2_ORLATER}FormatSettings.{$ENDIF}DecimalSeparator := '.';
     Result := StrToFloat(Value);
   finally
-    {$IFDEF D2012_ORLATER}FormatSettings.{$ENDIF}DecimalSeparator := OldDS;
+    {$IFDEF DXE2_ORLATER}FormatSettings.{$ENDIF}DecimalSeparator := OldDS;
   end;
 end;
 

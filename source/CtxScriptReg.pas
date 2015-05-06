@@ -24,7 +24,7 @@ uses
   {$ELSE}
   DesignEditors, DesignIntf,
   {$ENDIF}
-  {$IFDEF D2013_ORLATER}Actions,{$ENDIF}
+  {$IFDEF DXE3_ORLATER}Actions,{$ENDIF}
   CtxScript, CtxPasCompiler, CtxUnit, CtxUnitEditor, CtxActions, CtxTextReport,
   CtxPkgSysUtils, CtxPkgClasses, CtxPkgDB, CtxPgkGraphics;
 
