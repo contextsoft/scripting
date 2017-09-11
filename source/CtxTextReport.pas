@@ -20,7 +20,7 @@ uses Classes, SysUtils, Contnrs, {$IFnDEF VER130} Variants, {$ENDIF}
 type
   TCtxTextReportSection = class;
 
-  TOnParseField = function (const FieldText: String; IsField: Boolean): String of object;
+  TOnParseField = function (const FieldText: String; IsField: Boolean; Data: Pointer): String;
   TOnPrintSection = procedure (Sender: TObject; Section: TCtxTextReportSection) of object;
 
   TAggregate = record
@@ -139,7 +139,6 @@ type
     FStack: TStack;
 
     // function DoEvaluateField(const FieldText: String): String;
-    function DoCompileField(const FieldText: String; IsField: Boolean): String;
     procedure PushState;
     procedure PopState;
     procedure AddSubSection(SubSection: TCtxTextReportSection);
@@ -162,6 +161,8 @@ type
   end;
 
   procedure DumpSections(Reporter: TCtxTextReporter; Output: TStrings);
+  function ParseFields(const InpStr, Open, Close: String; OnParseField: TOnParseField; Data: Pointer = nil): String;
+  function TemplateToScript(const ScriptName, Template: String): String;
 
 resourcestring
   SUnexpectedCommand = 'Unexpected token. Line %d near %s';
@@ -197,7 +198,7 @@ const
 
 { Helper Routines }
 
-function ParseFields(const InpStr, Open, Close: String; OnParseField: TOnParseField): String;
+function ParseFields(const InpStr, Open, Close: String; OnParseField: TOnParseField; Data: Pointer = nil): String;
 var
   OpenPos, ClosePos: Integer;
   Res: String;
@@ -219,16 +220,16 @@ begin
     // Look for next open bracket from last Close pos
     OpenPos := PosFrom(Open, Res, ClosePos);
     if OpenPos = 0 then break;
-    Result := Result + OnParseField(copy(Res, ClosePos, OpenPos - ClosePos), False);
+    Result := Result + OnParseField(copy(Res, ClosePos, OpenPos - ClosePos), False, Data);
     Inc(OpenPos, Length(Open)); // Skip open bracket
     // Open bracket found. Look for Close
     ClosePos := PosFrom(Close, Res, OpenPos);
     if ClosePos = 0 then break;
     // Close Bracket Found. Extract/Replace field
-    Result := Result + OnParseField(copy(Res, OpenPos, ClosePos - OpenPos), True);
+    Result := Result + OnParseField(copy(Res, OpenPos, ClosePos - OpenPos), True, Data);
     Inc(ClosePos, Length(Close));
   until false;
-  Result := Result + OnParseField(copy(Res, ClosePos, Length(Res)), False);
+  Result := Result + OnParseField(copy(Res, ClosePos, Length(Res)), False, Data);
 end;
 
 procedure DumpSections(Reporter: TCtxTextReporter; Output: TStrings);
@@ -261,19 +262,7 @@ begin
     Dest[I] := Src[I];
 end;
 
-{ TCtxTextReportSection }
-
-destructor TCtxTextReportSection.Destroy;
-begin
-  FStack.Free;
-  // FFields.Free;
-  FSubSections.Free;
-  FSectionCode.Free;
-  inherited Destroy;
-end;
-
-function TCtxTextReportSection.DoCompileField(
-  const FieldText: String; IsField: Boolean): String;
+function DoCompileField(const FieldText: String; IsField: Boolean; Data: Pointer = nil): String;
 begin
   Result := '';
   if FieldText = '' then exit;
@@ -285,6 +274,46 @@ begin
   end else
     Result := StringReplace(FieldText, #13#10, '''+#13#10+''', [rfReplaceAll, rfIgnoreCase]);
 end;
+
+type
+  TDataRec = record
+    Vars: String;
+  end;
+
+function DoCompileVar(const FieldText: String; IsField: Boolean; Data: Pointer = nil): String;
+begin
+  if IsField then
+  begin
+    Result := '';
+    TDataRec(Data^).Vars := FieldText;
+  end else
+    Result := FieldText;
+end;
+
+function TemplateToScript(const ScriptName, Template: String): String;
+var
+  Data: TDataRec;
+  Temp: String;
+begin
+  Temp := ParseFields(Template, '<@', '@>', DoCompileVar, @Data);
+  Result := 'function '+ScriptName+';'#13#10+Data.Vars+
+            'begin Result := ''' +
+               ParseFields(Temp, '<%', '%>', DoCompileField) +
+               ''';'+#13#10+
+            'end;';
+end;
+
+{ TCtxTextReportSection }
+
+destructor TCtxTextReportSection.Destroy;
+begin
+  FStack.Free;
+  // FFields.Free;
+  FSubSections.Free;
+  FSectionCode.Free;
+  inherited Destroy;
+end;
+
 
 procedure TCtxTextReportSection.AddSubSection(
   SubSection: TCtxTextReportSection);
@@ -805,7 +834,7 @@ begin
       FSectionCode := TCtxScriptCode.Create;
       FSectionCode.Code :=
         'function Section' + IntToStr(I) + ';'#13#10'begin Result := ''' +
-        ParseFields(FBody, FOpenBracket, FCloseBracket, DoCompileField)
+        ParseFields(FBody, FOpenBracket, FCloseBracket, DoCompileField, Self)
         + ''';'+#13#10'end;';
     end;
   end;
