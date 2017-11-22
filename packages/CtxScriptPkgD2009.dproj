@@ -58,18 +58,20 @@
 			<DCCReference Include="xmlrtl.dcp"/>
 			<DCCReference Include="vclactnband.dcp"/>
 			<DCCReference Include="vclx.dcp"/>
-			<DCCReference Include="..\source\CtxActions.pas"/>
-			<DCCReference Include="..\source\CtxPasCompiler.pas"/>
-			<DCCReference Include="..\source\CtxPgkGraphics.pas"/>
-			<DCCReference Include="..\source\CtxPkgClasses.pas"/>
-			<DCCReference Include="..\source\CtxPkgDB.pas"/>
-			<DCCReference Include="..\source\CtxPkgSysUtils.pas"/>
 			<DCCReference Include="..\source\CtxScript.pas"/>
 			<DCCReference Include="..\source\CtxScriptReg.pas"/>
-			<DCCReference Include="..\source\CtxSyntaxHighlighter.pas"/>
-			<DCCReference Include="..\source\CtxTextReport.pas"/>
+			<DCCReference Include="..\source\CtxActions.pas"/>
+			<DCCReference Include="..\source\CtxPkgSysUtils.pas"/>
+			<DCCReference Include="..\source\CtxPkgClasses.pas"/>
+			<DCCReference Include="..\source\CtxUnitEditor.pas">
+				<Form>frmCtxUnitEditor</Form>
+			</DCCReference>
+			<DCCReference Include="..\source\CtxPasCompiler.pas"/>
+			<DCCReference Include="..\source\CtxPkgDB.pas"/>
 			<DCCReference Include="..\source\CtxUnit.pas"/>
-			<DCCReference Include="..\source\CtxUnitEditor.pas"/>
+			<DCCReference Include="..\source\CtxTextReport.pas"/>
+			<DCCReference Include="..\source\CtxPgkGraphics.pas"/>
+			<DCCReference Include="..\source\CtxSyntaxHighlighter.pas"/>
 			<DCCReference Include="..\source\CtxScript.dcr"/>
 			<DCCReference Include="..\source\CtxTextReport.dcr"/>
 			<DCCReference Include="..\source\CtxUnit.dcr"/>
