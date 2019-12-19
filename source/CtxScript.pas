@@ -2157,7 +2157,9 @@ var
         SValue, Index, ParCount);
 *)
       // Thread-safe version of this code
-      if Introspector = nil then
+      if (Introspector = nil)
+        or ((Obj = FState.Instance) or (Obj = FGlobalScope) or (Obj = CtxSystemScope)) // Always loop up introspector for scope objects
+      then
       begin
         Introspector := ResolveObjectName(Self, Obj, SValue, Index);
         if Introspector = nil then

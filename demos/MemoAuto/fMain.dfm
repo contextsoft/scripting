@@ -1,6 +1,6 @@
 object frmMain: TfrmMain
-  Left = 293
-  Top = 168
+  Left = 633
+  Top = 247
   Width = 541
   Height = 401
   Caption = 'Memo Automation Demo'
@@ -19,16 +19,16 @@ object frmMain: TfrmMain
   TextHeight = 13
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 328
-    Width = 533
+    Top = 324
+    Width = 525
     Height = 19
     Panels = <>
   end
   object Document: TMemo
     Left = 0
     Top = 0
-    Width = 533
-    Height = 328
+    Width = 525
+    Height = 324
     Align = alClient
     Lines.Strings = (
       

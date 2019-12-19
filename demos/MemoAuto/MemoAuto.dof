@@ -105,12 +105,8 @@ HostApplication=
 Launcher=
 UseLauncher=0
 DebugCWD=
-[Language]
-ActiveLang=
-ProjectLang=
-RootDir=D:\Program Files\Borland\Delphi7\Bin\
 [Version Info]
-IncludeVerInfo=0
+IncludeVerInfo=1
 AutoIncBuild=0
 MajorVer=1
 MinorVer=0
@@ -133,9 +129,10 @@ LegalTrademarks=
 OriginalFilename=
 ProductName=
 ProductVersion=1.0.0.0
-Comments=
 [Excluded Packages]
-D:\Program Files\dbisam\d700\lib\db324d7d.bpl=DBISAM Database System Design-Time Package
+c:\Program Files (x86)\borland\delphi7\Projects\Bpl\DBISAMExtPkgD7.bpl=Context Database Extensions (DBISAM 4)
+c:\Program Files (x86)\borland\delphi7\Projects\Bpl\EDBExtPkgD7.bpl=Context Database Extensions (Elevate DB)
+E:\projects\sdk\IntraWeb\LibD7\dclIntraweb_70_70.bpl=Intraweb 7.0 Design Package for Delphi 7
 [HistoryLists\hlConditionals]
 Count=1
 Item0=CTX_TRIAL
