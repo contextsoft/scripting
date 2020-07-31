@@ -1,0 +1,9 @@
+-backup/
+*.~dfm
+*.~pas
+*.dcu
+*.~dpr
+*.exe
+-work/
+*.ddp
+*.identcache
